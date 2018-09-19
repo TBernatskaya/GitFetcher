@@ -13,6 +13,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchResultsTableView: UITableView!
     
+    let apiService = ApiService.init()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Search"
@@ -27,6 +29,13 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        
+        apiService.repositories(for: searchText, completion: { repositories, error in
+            print(repositories)
+        })
+    }
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
