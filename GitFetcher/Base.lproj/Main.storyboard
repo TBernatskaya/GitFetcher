@@ -20,45 +20,45 @@
                         <subviews>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Input git user name" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-dX-2eA">
                                 <rect key="frame" x="16" y="64" width="343" height="56"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="5hl-3i-TH8"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5kn-Zb-d1d">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5kn-Zb-d1d">
                                 <rect key="frame" x="16" y="130" width="343" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" id="Sgx-vh-JvA">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sgx-vh-JvA" id="IAV-s2-RAQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="U9W-km-Cey"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="gQE-t1-1ag"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops! Something went wrong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kz-lq-lhN">
+                                <rect key="frame" x="16" y="130" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5kn-Zb-d1d" firstAttribute="top" secondItem="eyL-dX-2eA" secondAttribute="bottom" constant="10" id="DJ2-2b-LZk"/>
+                            <constraint firstItem="6Kz-lq-lhN" firstAttribute="top" secondItem="eyL-dX-2eA" secondAttribute="bottom" constant="10" id="GXK-hr-TcK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eyL-dX-2eA" secondAttribute="trailing" constant="16" id="MuC-li-S93"/>
                             <constraint firstItem="5kn-Zb-d1d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Pmt-Hy-zgQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5kn-Zb-d1d" secondAttribute="trailing" constant="16" id="VUJ-s1-0eT"/>
                             <constraint firstItem="eyL-dX-2eA" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="XQ4-fb-F6f"/>
                             <constraint firstItem="eyL-dX-2eA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hD1-lB-HFJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6Kz-lq-lhN" secondAttribute="trailing" constant="16" id="hKb-2w-ESg"/>
                             <constraint firstItem="eyL-dX-2eA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sOC-o2-pdt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5kn-Zb-d1d" secondAttribute="bottom" constant="20" id="uKL-xP-T1P"/>
+                            <constraint firstItem="6Kz-lq-lhN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="zAW-hv-Gpi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="vLm-Vq-hDN"/>
                     <connections>
+                        <outlet property="errorLabel" destination="6Kz-lq-lhN" id="uIj-dw-EmG"/>
                         <outlet property="searchBar" destination="eyL-dX-2eA" id="NL5-gi-KoZ"/>
                         <outlet property="searchDisplayController" destination="m0V-bs-iti" id="fIN-Vf-j6f"/>
                         <outlet property="searchResultsTableView" destination="5kn-Zb-d1d" id="MOn-Sp-TSZ"/>
@@ -68,7 +68,6 @@
                 <searchDisplayController id="m0V-bs-iti">
                     <connections>
                         <outlet property="delegate" destination="BYZ-38-t0r" id="fgP-xO-ldo"/>
-                        <outlet property="searchBar" destination="eyL-dX-2eA" id="sRp-9q-MSn"/>
                         <outlet property="searchContentsController" destination="BYZ-38-t0r" id="jZU-kH-pMd"/>
                         <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="diP-nm-Haw"/>
                         <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="k4V-22-YQ9"/>
