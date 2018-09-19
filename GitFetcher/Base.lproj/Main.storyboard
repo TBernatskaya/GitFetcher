@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,9 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Input git repo URL" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-dX-2eA">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Input git user name" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eyL-dX-2eA">
                                 <rect key="frame" x="16" y="64" width="343" height="56"/>
-                                <textInputTraits key="textInputTraits" keyboardType="URL" keyboardAppearance="light" returnKeyType="search" enablesReturnKeyAutomatically="YES" textContentType="url"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="5hl-3i-TH8"/>
                                 </connections>
