@@ -31,8 +31,11 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         searchBar.becomeFirstResponder()
     }
+}
+
+fileprivate extension MainViewController {
     
-    fileprivate func updateView() {
+    func updateView() {
         if repositoriesList?.count == 0 {
             searchResultsTableView.isHidden = true
             errorLabel.isHidden = false
@@ -42,7 +45,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    fileprivate func registerClasses() {
+    func registerClasses() {
         let cellReuseIdentifier = "searchResultCell"
         let cellNib = UINib.init(nibName: "SearchResultTableViewCell", bundle: Bundle.main)
         searchResultsTableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
@@ -66,7 +69,7 @@ extension MainViewController: UISearchBarDelegate {
     }
 }
 
-extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+extension MainViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
