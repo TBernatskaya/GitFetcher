@@ -1,2 +1,4 @@
-# MySamples
-Here a push my sample projects
+# GitFetcher
+
+This app fetches list of gitHub repositories by username.
+For ex. TBernatskaya
