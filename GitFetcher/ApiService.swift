@@ -9,32 +9,42 @@
 import Foundation
 import Alamofire
 
-struct DefaultSettings {
-    var host: URL {
-        get { return URL.init(string: "https://api.github.com/users/TBernatskaya/repos")! }
-    }
+enum ApiRequestKey: String {
     
-    var method: HTTPMethod {
-        get { return HTTPMethod.get }
-    }
+    case repos = "https://api.github.com/users/{username}/repos"
 }
 
 class ApiService {
 
-    private let settings = DefaultSettings.init()
+    func repositories(for username: String, completion: @escaping ([Repository]) -> ()) {
+        
+        let endpointString = ApiRequestKey.repos.rawValue.replacingOccurrences(of: "{username}", with:username)
+        
+        if let endpointUrl = URL.init(string: endpointString) {
+            self.request(url: endpointUrl, completion: { data in
+                let decoder = JSONDecoder()
+                if let repositories = try? decoder.decode([Repository].self, from: data) {
+                    completion(repositories)
+                }
+            })
+        }
+    }
+}
+
+fileprivate extension ApiService {
     
-    func getRepos(for username: String) -> DataRequest? {
+    func request (url: URL, completion: @escaping (Data) -> ()){
         
-        
-        
-        
-        return Alamofire.request(settings.host).responseJSON { response in
-            print("Request: \(String(describing: response.request))")
-            print("Response: \(String(describing: response.response))")
-            print("Error: \(String(describing: response.error))")
-            
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)")
+        Alamofire.request(url).responseData { response in
+            switch response.result {
+            case .success:
+                if let data = response.data {
+                    completion(data)
+                } else {
+                    print("No data received")
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }

@@ -31,7 +31,10 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        apiService.getRepos(for: searchText)
+        
+        apiService.repositories(for: searchText, completion: { repositories in
+            print(repositories)
+        })
     }
 }
 
