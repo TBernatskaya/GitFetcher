@@ -36,13 +36,29 @@ class MainViewController: UIViewController {
 fileprivate extension MainViewController {
     
     func updateView() {
-        if repositoriesList?.count == 0 {
-            searchResultsTableView.isHidden = true
-            errorLabel.isHidden = false
-        } else {
-            errorLabel.isHidden = true
-            searchResultsTableView.reloadData()
+        
+        guard
+            let repositoriesList = self.repositoriesList,
+            repositoriesList.count > 0
+        else {
+            return showTextMessage()
         }
+        showSearchResults()
+    }
+    
+    func showSearchResults() {
+        errorLabel.isHidden = true
+        searchResultsTableView.isHidden = false
+        searchResultsTableView.reloadData()
+    }
+    
+    func showTextMessage() {
+        searchResultsTableView.isHidden = true
+        errorLabel.isHidden = false
+    }
+    
+    func clearView() {
+        repositoriesList?.removeAll()
     }
     
     func registerClasses() {
@@ -66,6 +82,16 @@ extension MainViewController: UISearchBarDelegate {
                 self.errorLabel.isHidden = false
             }
         })
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            clearView()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ seachBar: UISearchBar) {
+        clearView()
     }
 }
 

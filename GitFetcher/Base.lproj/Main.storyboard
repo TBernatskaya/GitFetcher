@@ -33,8 +33,8 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="gQE-t1-1ag"/>
                                 </connections>
                             </tableView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops! Something went wrong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kz-lq-lhN">
-                                <rect key="frame" x="16" y="130" width="343" height="20.5"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hej there!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kz-lq-lhN">
+                                <rect key="frame" x="30" y="130" width="315" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,10 +49,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5kn-Zb-d1d" secondAttribute="trailing" constant="16" id="VUJ-s1-0eT"/>
                             <constraint firstItem="eyL-dX-2eA" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="XQ4-fb-F6f"/>
                             <constraint firstItem="eyL-dX-2eA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hD1-lB-HFJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6Kz-lq-lhN" secondAttribute="trailing" constant="16" id="hKb-2w-ESg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6Kz-lq-lhN" secondAttribute="trailing" constant="30" id="hKb-2w-ESg"/>
                             <constraint firstItem="eyL-dX-2eA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sOC-o2-pdt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5kn-Zb-d1d" secondAttribute="bottom" constant="20" id="uKL-xP-T1P"/>
-                            <constraint firstItem="6Kz-lq-lhN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="zAW-hv-Gpi"/>
+                            <constraint firstItem="6Kz-lq-lhN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="zAW-hv-Gpi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
