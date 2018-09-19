@@ -19,6 +19,8 @@
 		D8C30768215229A1002FFE14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8C30766215229A1002FFE14 /* LaunchScreen.storyboard */; };
 		D8C30773215229A1002FFE14 /* GitFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C30772215229A1002FFE14 /* GitFetcherTests.swift */; };
 		D8C3077E215229A1002FFE14 /* GitFetcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3077D215229A1002FFE14 /* GitFetcherUITests.swift */; };
+		D8DA40B021528B3F00763D69 /* repos.json in Resources */ = {isa = PBXBuildFile; fileRef = D8DA40AF21528B3E00763D69 /* repos.json */; };
+		D8DA40B2215294E300763D69 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = D8DA40B1215294E300763D69 /* empty.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		D8C30779215229A1002FFE14 /* GitFetcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitFetcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C3077D215229A1002FFE14 /* GitFetcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitFetcherUITests.swift; sourceTree = "<group>"; };
 		D8C3077F215229A1002FFE14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8DA40AF21528B3E00763D69 /* repos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repos.json; sourceTree = "<group>"; };
+		D8DA40B1215294E300763D69 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		DDC2831A7E4236DA3F4DED97 /* Pods-GitFetcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitFetcherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitFetcherTests/Pods-GitFetcherTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +150,8 @@
 		D8C30771215229A1002FFE14 /* GitFetcherTests */ = {
 			isa = PBXGroup;
 			children = (
+				D8DA40B1215294E300763D69 /* empty.json */,
+				D8DA40AF21528B3E00763D69 /* repos.json */,
 				D8C30772215229A1002FFE14 /* GitFetcherTests.swift */,
 				D8C30774215229A1002FFE14 /* Info.plist */,
 			);
@@ -289,6 +295,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8DA40B021528B3F00763D69 /* repos.json in Resources */,
+				D8DA40B2215294E300763D69 /* empty.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,10 +318,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GitFetcher/Pods-GitFetcher-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -16,15 +16,19 @@ enum ApiRequestKey: String {
 
 class ApiService {
 
-    func repositories(for username: String, completion: @escaping ([Repository]) -> ()) {
+    func repositories(for username: String, completion: @escaping ([Repository]?, Error?) -> ()) {
         
         let endpointString = ApiRequestKey.repos.rawValue.replacingOccurrences(of: "{username}", with:username)
         
         if let endpointUrl = URL.init(string: endpointString) {
-            self.request(url: endpointUrl, completion: { data in
+            self.request(url: endpointUrl, completion: { data, error in
                 let decoder = JSONDecoder()
-                if let repositories = try? decoder.decode([Repository].self, from: data) {
-                    completion(repositories)
+                if
+                    let data = data,
+                    let repositories = try? decoder.decode([Repository].self, from: data) {
+                    completion(repositories, nil)
+                } else {
+                    completion(nil, error)
                 }
             })
         }
@@ -33,18 +37,15 @@ class ApiService {
 
 fileprivate extension ApiService {
     
-    func request (url: URL, completion: @escaping (Data) -> ()){
+    func request (url: URL, completion: @escaping (Data?, Error?) -> ()){
         
         Alamofire.request(url).responseData { response in
             switch response.result {
             case .success:
-                if let data = response.data {
-                    completion(data)
-                } else {
-                    print("No data received")
-                }
-            case .failure(let error):
-                print(error)
+                completion(response.data, response.error)
+                
+            case .failure:
+                completion(nil, response.error)
             }
         }
     }

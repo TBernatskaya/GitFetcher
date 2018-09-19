@@ -5,6 +5,7 @@ target 'GitFetcher' do
   use_frameworks!
 
   pod 'Alamofire', '~> 4.7'
+  pod 'OHHTTPStubs/Swift'
 
   target 'GitFetcherTests' do
     inherit! :search_paths
@@ -13,7 +14,6 @@ target 'GitFetcher' do
 
   target 'GitFetcherUITests' do
     inherit! :search_paths
-    # Pods for testing
   end
 
 end

@@ -7,28 +7,93 @@
 //
 
 import XCTest
+import OHHTTPStubs
 @testable import GitFetcher
 
 class GitFetcherTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    
+    let host = "api.github.com"
+    lazy var testBundle = Bundle(for: type(of: self))
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+        OHHTTPStubs.removeAllStubs()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testExistingGitUser() {
+        let apiService = ApiService.init()
+        let expectation = XCTestExpectation.init(description: "Waiting for response")
+        let existingUserName = "TBernatskaya"
+        let reposCount = 1
+        
+        if let path = testBundle.path(forResource: "repos", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                
+                stub(condition: isHost(self.host)) { _ in
+                    return OHHTTPStubsResponse(jsonObject: jsonObject, statusCode: 200, headers: nil)
+                }
+            } catch {
+                XCTFail("Cannot read json test file")
+            }
         }
+        
+        apiService.repositories(for: existingUserName, completion: { repos, error in
+            XCTAssertNotNil(repos)
+            XCTAssertNil(error)
+            XCTAssertEqual(repos!.count, reposCount)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 10.0)
     }
-
+    
+    func testNotExistingGitUser() {
+        let apiService = ApiService.init()
+        let expectation = XCTestExpectation.init(description: "Waiting for response")
+        let notExistingUserName = "blah123"
+        let reposCount = 0
+        
+        if let path = testBundle.path(forResource: "empty", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                
+                stub(condition: isHost(self.host)) { _ in
+                    return OHHTTPStubsResponse(jsonObject: jsonObject, statusCode: 200, headers: nil)
+                }
+            } catch {
+                XCTFail("Cannot read json test file")
+            }
+        }
+        
+        apiService.repositories(for: notExistingUserName, completion: { repos, error in
+            XCTAssertNotNil(repos)
+            XCTAssertNil(error)
+            XCTAssertEqual(repos!.count, reposCount)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testReceivedError() {
+        let apiService = ApiService.init()
+        let expectation = XCTestExpectation.init(description: "Waiting for response")
+        let notExistingUserName = "blah123"
+        
+        stub(condition: isHost(self.host)) { _ in
+            let notConnectedError = NSError(domain:NSURLErrorDomain, code:Int(CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue), userInfo:nil)
+            return OHHTTPStubsResponse(error:notConnectedError)
+        }
+        
+        apiService.repositories(for: notExistingUserName, completion: { repos, error in
+            XCTAssertNil(repos)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
 }
