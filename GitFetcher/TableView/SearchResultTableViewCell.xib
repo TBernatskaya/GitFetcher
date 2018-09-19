@@ -26,13 +26,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljp-gZ-rMo">
-                            <rect key="frame" x="0.0" y="202.5" width="343" height="16"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watchers: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3E-aJ-Htt">
-                            <rect key="frame" x="0.0" y="401" width="343" height="16"/>
+                            <rect key="frame" x="0.0" y="302" width="343" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -58,7 +52,6 @@
             <connections>
                 <outlet property="descriptionLabel" destination="ljp-gZ-rMo" id="LCr-yY-GMy"/>
                 <outlet property="nameLabel" destination="nYE-8W-NZu" id="UYM-uc-OGe"/>
-                <outlet property="numberOfWatchersLabel" destination="E3E-aJ-Htt" id="zbP-Zh-lan"/>
                 <outlet property="urlLabel" destination="9ND-d9-yuH" id="AHR-7W-LrY"/>
             </connections>
             <point key="canvasLocation" x="135.19999999999999" y="48.125937031484263"/>

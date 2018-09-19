@@ -13,12 +13,10 @@ struct Repository: Codable {
     var name: String
     var description: String
     var url: URL
-    var numberOfWatchers: Int
     
     enum CodingKeys: String, CodingKey {
         case name
         case description
         case url = "html_url"
-        case numberOfWatchers = "watchers"
     }
 }

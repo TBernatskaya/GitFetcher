@@ -14,8 +14,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var searchResultsTableView: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
     
-    let apiService = ApiService.init()
-    
     var repositoriesList: [Repository]? {
         didSet {
             updateView()
@@ -34,59 +32,38 @@ class MainViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
     
-    fileprivate func updateView() {
-        if repositoriesList?.count == 0 {
-            searchResultsTableView.isHidden = true
-            errorLabel.isHidden = false
-        } else {
-            errorLabel.isHidden = true
-            searchResultsTableView.reloadData()
+    func clearView() {
+        repositoriesList?.removeAll()
+    }
+}
+
+fileprivate extension MainViewController {
+    
+    func updateView() {
+        
+        guard
+            let repositoriesList = self.repositoriesList,
+            repositoriesList.count > 0
+        else {
+            return showTextMessage()
         }
+        showSearchResults()
     }
     
-    fileprivate func registerClasses() {
+    func showSearchResults() {
+        errorLabel.isHidden = true
+        searchResultsTableView.isHidden = false
+        searchResultsTableView.reloadData()
+    }
+    
+    func showTextMessage() {
+        searchResultsTableView.isHidden = true
+        errorLabel.isHidden = false
+    }
+    
+    func registerClasses() {
         let cellReuseIdentifier = "searchResultCell"
         let cellNib = UINib.init(nibName: "SearchResultTableViewCell", bundle: Bundle.main)
         searchResultsTableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
-    }
-}
-
-extension MainViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text else { return }
-        
-        apiService.repositories(for: searchText, completion: { repositories, error in
-            if let repositories = repositories {
-                self.repositoriesList = repositories
-            } else if let error = error {
-                self.searchResultsTableView.isHidden = true
-                self.errorLabel.text = error.localizedDescription
-                self.errorLabel.isHidden = false
-            }
-        })
-    }
-}
-
-extension MainViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositoriesList?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchResultsTableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath) as! SearchResultTableViewCell
-        
-        guard let repositoriesList = self.repositoriesList else { return cell }
-        cell.nameLabel.text = repositoriesList[indexPath.row].name
-        cell.descriptionLabel.text = repositoriesList[indexPath.row].description
-        cell.numberOfWatchersLabel.text = String(repositoriesList[indexPath.row].numberOfWatchers)
-        cell.urlLabel.text = repositoriesList[indexPath.row].url.absoluteString
-        
-        return cell
     }
 }
