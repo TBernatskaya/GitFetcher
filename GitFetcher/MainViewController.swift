@@ -14,8 +14,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var searchResultsTableView: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
     
-    let apiService = ApiService.init()
-    
     var repositoriesList: [Repository]? {
         didSet {
             updateView()
@@ -56,7 +54,7 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         
-        apiService.repositories(for: searchText, completion: { repositories, error in
+        ApiService().repositories(for: searchText, completion: { repositories, error in
             if let repositories = repositories {
                 self.repositoriesList = repositories
             } else if let error = error {
@@ -84,7 +82,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         guard let repositoriesList = self.repositoriesList else { return cell }
         cell.nameLabel.text = repositoriesList[indexPath.row].name
         cell.descriptionLabel.text = repositoriesList[indexPath.row].description
-        cell.numberOfWatchersLabel.text = String(repositoriesList[indexPath.row].numberOfWatchers)
         cell.urlLabel.text = repositoriesList[indexPath.row].url.absoluteString
         
         return cell

@@ -12,7 +12,6 @@ class SearchResultTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var numberOfWatchersLabel: UILabel!
     @IBOutlet weak var urlLabel: UILabel!
     
     override func awakeFromNib() {
@@ -24,7 +23,6 @@ class SearchResultTableViewCell: UITableViewCell {
         
         nameLabel.text = ""
         descriptionLabel.text = ""
-        numberOfWatchersLabel.text = ""
         urlLabel.text = ""
     }
 }
