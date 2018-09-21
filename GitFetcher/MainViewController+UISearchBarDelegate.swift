@@ -31,6 +31,6 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ seachBar: UISearchBar) {
-        clearView()
+        searchBar.resignFirstResponder()
     }
 }

@@ -62,6 +62,7 @@
                         <outlet property="searchBar" destination="eyL-dX-2eA" id="NL5-gi-KoZ"/>
                         <outlet property="searchDisplayController" destination="m0V-bs-iti" id="fIN-Vf-j6f"/>
                         <outlet property="searchResultsTableView" destination="5kn-Zb-d1d" id="MOn-Sp-TSZ"/>
+                        <outlet property="searchResultsTableViewBottom" destination="uKL-xP-T1P" id="6QQ-Yp-m4k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
