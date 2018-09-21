@@ -1,4 +1,4 @@
 # GitFetcher
 
-This app fetches list of gitHub repositories by username.
+This app fetches list of Github repositories by username.
 For ex. TBernatskaya
