@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MainViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -27,5 +27,11 @@ extension MainViewController: UITableViewDataSource {
         cell.urlLabel.text = repositoriesList[indexPath.row].url.absoluteString
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let repositoriesList = self.repositoriesList else { return }
+        let url = repositoriesList[indexPath.row].url
+        openSafari(with: url)
     }
 }

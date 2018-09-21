@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class MainViewController: UIViewController {
 
@@ -34,6 +35,12 @@ class MainViewController: UIViewController {
     
     func clearView() {
         repositoriesList?.removeAll()
+    }
+    
+    func openSafari(with url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.modalPresentationStyle = .formSheet
+        self.navigationController?.present(safariViewController, animated:true, completion:nil)
     }
 }
 
