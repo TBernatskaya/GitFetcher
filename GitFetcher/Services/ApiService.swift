@@ -30,7 +30,6 @@ let headers = ["Authorization": "Bearer \("xxx")"]
 class ApiService {
 
     func repositories(for username: String, completion: @escaping ([Repository]?, Error?) -> ()) {
-        
         let endpointString = ApiRequestKey.repos.rawValue.replacingOccurrences(of: "{username}", with:username)
         
         if let endpointUrl = URL.init(string: endpointString) {
@@ -47,36 +46,40 @@ class ApiService {
         }
     }
     
-    func star(repository: String, owner: String) {
-        let endpointString = ApiRequestKey.star.rawValue.replacingOccurrences(of: "{username}", with:owner).replacingOccurrences(of: "{reponame}", with: repository)
+    func star(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
+        guard let endpointUrl = starEndpoint(repository: repository, owner: owner) else { return }
         
-        if let endpointUrl = URL.init(string: endpointString) {
-            self.request(url: endpointUrl, method: .put, headers: headers, completion: { data, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print("starred!")
-                }
-            })
-        }
+        self.request(url: endpointUrl, method: .put, headers: headers, completion: { data, error in
+            if let error = error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
+                print("starred!")
+            }
+        })
     }
     
-    func unstar(repository: String, owner: String) {
-        let endpointString = ApiRequestKey.star.rawValue.replacingOccurrences(of: "{username}", with:owner).replacingOccurrences(of: "{reponame}", with: repository)
+    func unstar(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
+        guard let endpointUrl = starEndpoint(repository: repository, owner: owner) else { return }
         
-        if let endpointUrl = URL.init(string: endpointString) {
-            self.request(url: endpointUrl, method: .delete, headers: headers, completion: { data, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print("unstarred!")
-                }
-            })
-        }
+        self.request(url: endpointUrl, method: .delete, headers: headers, completion: { data, error in
+            if let error = error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
+                print("unstarred!")
+            }
+        })
     }
 }
 
 fileprivate extension ApiService {
+    
+    func starEndpoint(repository: String, owner: String) -> URL? {
+        let endpointString = ApiRequestKey.star.rawValue.replacingOccurrences(of: "{username}", with:owner).replacingOccurrences(of: "{reponame}", with: repository)
+        
+        return URL.init(string: endpointString)
+    }
     
     func request(url: URL, method: HTTPMethod, headers: HTTPHeaders, completion: @escaping ResponseResult) {
         

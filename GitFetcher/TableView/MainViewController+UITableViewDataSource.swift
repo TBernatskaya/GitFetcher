@@ -30,7 +30,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ApiService().star(repository: "emotion", owner: "sgal")
+        ApiService().star(repository: "emotion", owner: "sgal", completion: { succeded, error in
+           
+        })
         //presentDetails()
     }
 }
