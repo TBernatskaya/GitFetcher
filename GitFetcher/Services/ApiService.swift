@@ -12,9 +12,19 @@ import Alamofire
 enum ApiRequestKey: String {
     
     case repos = "https://api.github.com/users/{username}/repos"
-    case star = "https://api.github.com/TBernatskaya/starred/{username}/{reponame}"
+    case star = "https://api.github.com/user/starred/{username}/{reponame}"
 }
 
+enum StatusCode: Int {
+    case ok = 200
+    case done = 204
+}
+
+enum ApiError: Error {
+    case wrongStatus
+}
+
+typealias ResponseResult = (Data?, Error?) -> ()
 let headers = ["Authorization": "Bearer \("xxx")"]
 
 class ApiService {
@@ -24,7 +34,7 @@ class ApiService {
         let endpointString = ApiRequestKey.repos.rawValue.replacingOccurrences(of: "{username}", with:username)
         
         if let endpointUrl = URL.init(string: endpointString) {
-            self.request(url: endpointUrl, completion: { data, error in
+            self.request(url: endpointUrl, method: .get, headers: [:], completion: { data, error  in
                 let decoder = JSONDecoder()
                 if
                     let data = data,
@@ -41,9 +51,26 @@ class ApiService {
         let endpointString = ApiRequestKey.star.rawValue.replacingOccurrences(of: "{username}", with:owner).replacingOccurrences(of: "{reponame}", with: repository)
         
         if let endpointUrl = URL.init(string: endpointString) {
-            self.request(url: endpointUrl, completion: { data, error in
-                print(data!)
-                print(error!)
+            self.request(url: endpointUrl, method: .put, headers: headers, completion: { data, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("starred!")
+                }
+            })
+        }
+    }
+    
+    func unstar(repository: String, owner: String) {
+        let endpointString = ApiRequestKey.star.rawValue.replacingOccurrences(of: "{username}", with:owner).replacingOccurrences(of: "{reponame}", with: repository)
+        
+        if let endpointUrl = URL.init(string: endpointString) {
+            self.request(url: endpointUrl, method: .delete, headers: headers, completion: { data, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("unstarred!")
+                }
             })
         }
     }
@@ -51,12 +78,16 @@ class ApiService {
 
 fileprivate extension ApiService {
     
-    func request(url: URL, completion: @escaping (Data?, Error?) -> ()) {
+    func request(url: URL, method: HTTPMethod, headers: HTTPHeaders, completion: @escaping ResponseResult) {
         
-        Alamofire.request(method: .put, url, headers: headers).responseData { response in
+        Alamofire.request(url, method: method, headers: headers).responseData { response in
             switch response.result {
             case .success:
-                completion(response.data, response.error)
+                if (response.response?.statusCode == StatusCode.ok.rawValue || response.response?.statusCode == StatusCode.done.rawValue) {
+                    completion(response.data, response.error)
+                } else {
+                    completion(nil, ApiError.wrongStatus)
+                }
                 
             case .failure:
                 completion(nil, response.error)
