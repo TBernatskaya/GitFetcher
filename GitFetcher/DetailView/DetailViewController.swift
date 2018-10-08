@@ -8,8 +8,36 @@
 
 import UIKit
 
+protocol RepositoryActionLisener: class {
+    func starStatusDidchange(to newStatus: StarStatus)
+}
+
+enum StarStatus {
+    case starred
+    case unstarred
+}
+
 class DetailViewController: UIViewController {
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    @IBAction func starButtonDidTap(_ sender: Any) {
+        toggleStarStatus()
+    }
+    
+    weak var delegate: RepositoryActionLisener?
+    
+    var repositoryViewModel: Repository? {
+        didSet{
+            updateView()
+        }
+    }
+}
+
+fileprivate extension DetailViewController {
+    func updateView() {
+        self.title = repositoryViewModel?.name
+    }
+    
+    func toggleStarStatus() {
+        
     }
 }
