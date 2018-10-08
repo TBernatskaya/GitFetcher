@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class MainViewController: UIViewController {
 
@@ -15,6 +14,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var searchResultsTableView: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var searchResultsTableViewBottom: NSLayoutConstraint!
+    
+    lazy var detailViewController: DetailViewController = {
+        let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
+        let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        return detailViewController
+    }()
     
     var repositoriesList: [Repository]? {
         didSet {
@@ -48,17 +53,14 @@ class MainViewController: UIViewController {
         repositoriesList?.removeAll()
     }
     
-    func openSafari(with url: URL) {
-        let safariViewController = SFSafariViewController(url: url)
-        safariViewController.modalPresentationStyle = .formSheet
-        self.navigationController?.present(safariViewController, animated:true, completion:nil)
+    func presentDetails() {
+        self.navigationController?.show(detailViewController, sender: self)
     }
 }
 
 fileprivate extension MainViewController {
     
     func updateView() {
-        
         guard
             let repositoriesList = self.repositoriesList,
             repositoriesList.count > 0

@@ -12,6 +12,8 @@
 		A98C7FD83589A35924096CB6 /* Pods_GitFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48DD39F8276DC9485FF65928 /* Pods_GitFetcher.framework */; };
 		D81CCDFB2152506B003A4315 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFA2152506B003A4315 /* ApiService.swift */; };
 		D81CCDFD2152605E003A4315 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFC2152605E003A4315 /* RepositoryModel.swift */; };
+		D831FFBF216B9A73000DB1CD /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */; };
+		D831FFC1216B9A86000DB1CD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFC0216B9A86000DB1CD /* DetailViewController.swift */; };
 		D8C3075E2152299F002FFE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3075D2152299F002FFE14 /* AppDelegate.swift */; };
 		D8C307602152299F002FFE14 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3075F2152299F002FFE14 /* MainViewController.swift */; };
 		D8C307632152299F002FFE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8C307612152299F002FFE14 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		C79A425E961D08A8D15D1BF5 /* Pods-GitFetcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitFetcherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitFetcherTests/Pods-GitFetcherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D81CCDFA2152506B003A4315 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		D81CCDFC2152605E003A4315 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
+		D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
+		D831FFC0216B9A86000DB1CD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D8C3075A2152299F002FFE14 /* GitFetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitFetcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C3075D2152299F002FFE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8C3075F2152299F002FFE14 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +122,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D831FFC2216B9A8E000DB1CD /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */,
+				D831FFC0216B9A86000DB1CD /* DetailViewController.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		D8C307512152299F002FFE14 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +166,7 @@
 				D8C30764215229A1002FFE14 /* Assets.xcassets */,
 				D8C30766215229A1002FFE14 /* LaunchScreen.storyboard */,
 				D8C30769215229A1002FFE14 /* Info.plist */,
+				D831FFC2216B9A8E000DB1CD /* DetailView */,
 			);
 			path = GitFetcher;
 			sourceTree = "<group>";
@@ -324,6 +338,7 @@
 				D8C30768215229A1002FFE14 /* LaunchScreen.storyboard in Resources */,
 				D8C30765215229A1002FFE14 /* Assets.xcassets in Resources */,
 				D8DA40B42152A55500763D69 /* SearchResultTableViewCell.xib in Resources */,
+				D831FFBF216B9A73000DB1CD /* DetailViewController.storyboard in Resources */,
 				D8C307632152299F002FFE14 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +450,7 @@
 				D81CCDFB2152506B003A4315 /* ApiService.swift in Sources */,
 				D8DA40B82152C74500763D69 /* MainViewController+UISearchBarDelegate.swift in Sources */,
 				D8C3075E2152299F002FFE14 /* AppDelegate.swift in Sources */,
+				D831FFC1216B9A86000DB1CD /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

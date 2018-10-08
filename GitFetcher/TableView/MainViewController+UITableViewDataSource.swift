@@ -30,8 +30,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let repositoriesList = self.repositoriesList else { return }
-        let url = repositoriesList[indexPath.row].url
-        openSafari(with: url)
+        ApiService().star(repository: "emotion", owner: "sgal")
+        //presentDetails()
     }
 }

@@ -12,7 +12,10 @@ import Alamofire
 enum ApiRequestKey: String {
     
     case repos = "https://api.github.com/users/{username}/repos"
+    case star = "https://api.github.com/TBernatskaya/starred/{username}/{reponame}"
 }
+
+let headers = ["Authorization": "Bearer \("xxx")"]
 
 class ApiService {
 
@@ -33,13 +36,24 @@ class ApiService {
             })
         }
     }
+    
+    func star(repository: String, owner: String) {
+        let endpointString = ApiRequestKey.star.rawValue.replacingOccurrences(of: "{username}", with:owner).replacingOccurrences(of: "{reponame}", with: repository)
+        
+        if let endpointUrl = URL.init(string: endpointString) {
+            self.request(url: endpointUrl, completion: { data, error in
+                print(data!)
+                print(error!)
+            })
+        }
+    }
 }
 
 fileprivate extension ApiService {
     
-    func request (url: URL, completion: @escaping (Data?, Error?) -> ()){
+    func request(url: URL, completion: @escaping (Data?, Error?) -> ()) {
         
-        Alamofire.request(url).responseData { response in
+        Alamofire.request(method: .put, url, headers: headers).responseData { response in
             switch response.result {
             case .success:
                 completion(response.data, response.error)
