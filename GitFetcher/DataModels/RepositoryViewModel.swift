@@ -8,13 +8,14 @@
 
 import Foundation
 
-struct RepositoryViewModel {
+class RepositoryViewModel {
     
     var repository: Repository
+    var starStatus: Bool = false
     
     init(with repository: Repository) {
         self.repository = repository
     }
 }
 
-extension RepositoryViewModel: UpdateListener {}
+extension RepositoryViewModel: ApiService {}

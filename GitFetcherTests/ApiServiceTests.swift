@@ -178,4 +178,46 @@ class ApiServiceTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10.0)
     }
+    
+    func testIsStarRepository() {
+        let apiService = MockClass()
+        let expectation = XCTestExpectation.init(description: "Waiting for response")
+        let existingUserName = "TBernatskaya"
+        let existingRepositoryName = "GitFetcher"
+        
+        stub(condition: isHost(self.host)) { _ in
+            let response = OHHTTPStubsResponse.init()
+            response.statusCode = 204
+            return response
+        }
+        
+        apiService.isStar(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
+            XCTAssertTrue(succeeded)
+            XCTAssertNil(error)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testIsStarRepositoryReceivedError() {
+        let apiService = MockClass()
+        let expectation = XCTestExpectation.init(description: "Waiting for response")
+        let existingUserName = "TBernatskaya"
+        let existingRepositoryName = "GitFetcher"
+        
+        stub(condition: isHost(self.host)) { _ in
+            let response = OHHTTPStubsResponse.init()
+            response.statusCode = 404
+            return response
+        }
+        
+        apiService.isStar(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
+            XCTAssertFalse(succeeded)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
 }

@@ -9,13 +9,14 @@
 import Foundation
 
 struct Repository: Codable {
-    
     var name: String
+    var owner: Owner
     var description: String
     var url: URL
     
     enum CodingKeys: String, CodingKey {
         case name
+        case owner
         case description
         case url = "html_url"
     }

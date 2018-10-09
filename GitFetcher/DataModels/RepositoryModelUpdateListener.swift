@@ -1,5 +1,5 @@
 //
-//  UpdateListener.swift
+//  RepositoryModelUpdateListener.swift
 //  GitFetcher
 //
 //  Created by Tatiana Bernatskaya on 2018-10-09.
@@ -8,4 +8,6 @@
 
 import Foundation
 
-protocol UpdateListener {}
+protocol RepositoryModelUpdateListener: class {
+    func didUpdateStarStatus(to isStarred: Bool)
+}

@@ -64,6 +64,18 @@ extension ApiService {
             }
         })
     }
+    
+    func isStar(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
+        guard let endpointUrl = starEndpoint(repository: repository, username: owner) else { return }
+        
+        self.request(url: endpointUrl, method: .get, headers: headers, completion: { data, error in
+            if let error = error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
+            }
+        })
+    }
 }
 
 fileprivate extension ApiService {
