@@ -13,7 +13,7 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         
-        ApiService().repositories(for: searchText, completion: { repositories, error in
+        repositories(for: searchText, completion: { repositories, error in
             if let repositories = repositories {
                 self.repositoriesList = repositories
             } else if let error = error {
@@ -34,3 +34,5 @@ extension MainViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
+extension MainViewController: ApiService {}

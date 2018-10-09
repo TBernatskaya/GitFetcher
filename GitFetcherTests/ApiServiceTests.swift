@@ -1,5 +1,5 @@
 //
-//  GitFetcherTests.swift
+//  ApiServiceTests.swift
 //  GitFetcherTests
 //
 //  Created by Tatiana Bernatskaya on 2018-09-19.
@@ -10,7 +10,9 @@ import XCTest
 import OHHTTPStubs
 @testable import GitFetcher
 
-class GitFetcherTests: XCTestCase {
+class ApiServiceTests: XCTestCase {
+    
+    class MockClass: ApiService {}
     
     let host = "api.github.com"
     lazy var testBundle = Bundle(for: type(of: self))
@@ -22,7 +24,7 @@ class GitFetcherTests: XCTestCase {
     }
 
     func testExistingGitUser() {
-        let apiService = ApiService.init()
+        let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
         let existingUserName = "TBernatskaya"
         let reposCount = 1
@@ -51,7 +53,7 @@ class GitFetcherTests: XCTestCase {
     }
     
     func testNotExistingGitUser() {
-        let apiService = ApiService.init()
+        let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
         let notExistingUserName = "blah123"
         let reposCount = 0
@@ -80,7 +82,7 @@ class GitFetcherTests: XCTestCase {
     }
     
     func testGitUserReceivedError() {
-        let apiService = ApiService.init()
+        let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
         let notExistingUserName = "blah123"
         
@@ -98,7 +100,7 @@ class GitFetcherTests: XCTestCase {
     }
     
     func testStarRepository() {
-        let apiService = ApiService.init()
+        let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
         let existingUserName = "TBernatskaya"
         let existingRepositoryName = "GitFetcher"
@@ -119,7 +121,7 @@ class GitFetcherTests: XCTestCase {
     }
     
     func testStarRepositoryReceivedError() {
-        let apiService = ApiService.init()
+        let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
         let existingUserName = "TBernatskaya"
         let existingRepositoryName = "GitFetcher"
@@ -138,7 +140,7 @@ class GitFetcherTests: XCTestCase {
     }
     
     func testUnStarRepository() {
-        let apiService = ApiService.init()
+        let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
         let existingUserName = "TBernatskaya"
         let existingRepositoryName = "GitFetcher"
@@ -159,7 +161,7 @@ class GitFetcherTests: XCTestCase {
     }
     
     func testUnStarRepositoryReceivedError() {
-        let apiService = ApiService.init()
+        let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
         let existingUserName = "TBernatskaya"
         let existingRepositoryName = "GitFetcher"
