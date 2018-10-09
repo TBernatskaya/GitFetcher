@@ -1,5 +1,5 @@
 //
-//  RepositoryModel.swift
+//  Repository.swift
 //  GitFetcher
 //
 //  Created by Tatiana Bernatskaya on 2018-09-19.

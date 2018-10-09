@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
     
     weak var delegate: RepositoryActionLisener?
     
-    var repositoryViewModel: Repository? {
+    var repositoryViewModel: RepositoryViewModel? {
         didSet{
             updateView()
         }
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
 
 fileprivate extension DetailViewController {
     func updateView() {
-        self.title = repositoryViewModel?.name
+        self.title = repositoryViewModel?.repository.name
     }
     
     func toggleStarStatus() {

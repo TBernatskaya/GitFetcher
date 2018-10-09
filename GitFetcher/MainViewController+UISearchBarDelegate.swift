@@ -15,7 +15,7 @@ extension MainViewController: UISearchBarDelegate {
         
         repositories(for: searchText, completion: { repositories, error in
             if let repositories = repositories {
-                self.repositoriesList = repositories
+                self.repositoriesList = repositories.map{ RepositoryViewModel.init(with: $0) }
             } else if let error = error {
                 self.searchResultsTableView.isHidden = true
                 self.errorLabel.text = error.localizedDescription

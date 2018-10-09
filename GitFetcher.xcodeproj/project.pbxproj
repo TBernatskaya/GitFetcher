@@ -12,8 +12,10 @@
 		A98C7FD83589A35924096CB6 /* Pods_GitFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48DD39F8276DC9485FF65928 /* Pods_GitFetcher.framework */; };
 		D4ED1B5D216D257F00ECCBFD /* ApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B5C216D257F00ECCBFD /* ApiHelper.swift */; };
 		D4ED1B5F216D2A4600ECCBFD /* ApiHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B5E216D2A4600ECCBFD /* ApiHelperTests.swift */; };
+		D4ED1B61216D326A00ECCBFD /* RepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B60216D326A00ECCBFD /* RepositoryViewModel.swift */; };
+		D4ED1B63216D340D00ECCBFD /* UpdateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B62216D340D00ECCBFD /* UpdateListener.swift */; };
 		D81CCDFB2152506B003A4315 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFA2152506B003A4315 /* ApiService.swift */; };
-		D81CCDFD2152605E003A4315 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFC2152605E003A4315 /* RepositoryModel.swift */; };
+		D81CCDFD2152605E003A4315 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFC2152605E003A4315 /* Repository.swift */; };
 		D831FFBF216B9A73000DB1CD /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */; };
 		D831FFC1216B9A86000DB1CD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFC0216B9A86000DB1CD /* DetailViewController.swift */; };
 		D8C3075E2152299F002FFE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3075D2152299F002FFE14 /* AppDelegate.swift */; };
@@ -59,8 +61,10 @@
 		C79A425E961D08A8D15D1BF5 /* Pods-GitFetcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitFetcherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitFetcherTests/Pods-GitFetcherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D4ED1B5C216D257F00ECCBFD /* ApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelper.swift; sourceTree = "<group>"; };
 		D4ED1B5E216D2A4600ECCBFD /* ApiHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelperTests.swift; sourceTree = "<group>"; };
+		D4ED1B60216D326A00ECCBFD /* RepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewModel.swift; sourceTree = "<group>"; };
+		D4ED1B62216D340D00ECCBFD /* UpdateListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListener.swift; sourceTree = "<group>"; };
 		D81CCDFA2152506B003A4315 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		D81CCDFC2152605E003A4315 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
+		D81CCDFC2152605E003A4315 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		D831FFC0216B9A86000DB1CD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D8C3075A2152299F002FFE14 /* GitFetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitFetcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,7 +212,9 @@
 		D8DA40BE2152C83E00763D69 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				D81CCDFC2152605E003A4315 /* RepositoryModel.swift */,
+				D81CCDFC2152605E003A4315 /* Repository.swift */,
+				D4ED1B60216D326A00ECCBFD /* RepositoryViewModel.swift */,
+				D4ED1B62216D340D00ECCBFD /* UpdateListener.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -451,9 +457,11 @@
 			files = (
 				D8C307602152299F002FFE14 /* MainViewController.swift in Sources */,
 				D8DA40B62152A72900763D69 /* SearchResultTableViewCell.swift in Sources */,
-				D81CCDFD2152605E003A4315 /* RepositoryModel.swift in Sources */,
+				D4ED1B61216D326A00ECCBFD /* RepositoryViewModel.swift in Sources */,
+				D81CCDFD2152605E003A4315 /* Repository.swift in Sources */,
 				D4ED1B5D216D257F00ECCBFD /* ApiHelper.swift in Sources */,
 				D8DA40BA2152C78000763D69 /* MainViewController+UITableViewDataSource.swift in Sources */,
+				D4ED1B63216D340D00ECCBFD /* UpdateListener.swift in Sources */,
 				D81CCDFB2152506B003A4315 /* ApiService.swift in Sources */,
 				D8DA40B82152C74500763D69 /* MainViewController+UISearchBarDelegate.swift in Sources */,
 				D8C3075E2152299F002FFE14 /* AppDelegate.swift in Sources */,

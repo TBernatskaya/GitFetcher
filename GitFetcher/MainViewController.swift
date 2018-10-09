@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
         return detailViewController
     }()
     
-    var repositoriesList: [Repository]? {
+    var repositoriesList: [RepositoryViewModel]? {
         didSet {
             updateView()
         }

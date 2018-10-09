@@ -21,18 +21,22 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchResultsTableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath) as! SearchResultTableViewCell
         
-        guard let repositoriesList = self.repositoriesList else { return cell }
-        cell.nameLabel.text = repositoriesList[indexPath.row].name
-        cell.descriptionLabel.text = repositoriesList[indexPath.row].description
-        cell.urlLabel.text = repositoriesList[indexPath.row].url.absoluteString
+        guard let viewModel = viewModel(by: indexPath) else { return cell }
+        cell.nameLabel.text = viewModel.repository.name
+        cell.descriptionLabel.text = viewModel.repository.description
+        cell.urlLabel.text = viewModel.repository.url.absoluteString
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let repositoriesList = self.repositoriesList else { return }
-        
-        detailViewController.repositoryViewModel = repositoriesList[indexPath.row]
+        detailViewController.repositoryViewModel = viewModel(by: indexPath)
         presentDetails()
+    }
+    
+    fileprivate func viewModel(by indexPath: IndexPath) -> RepositoryViewModel? {
+        guard let repositoriesList = self.repositoriesList else { return nil }
+        
+        return repositoriesList[indexPath.row]
     }
 }
