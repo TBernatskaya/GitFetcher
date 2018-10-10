@@ -42,7 +42,7 @@ extension ApiService {
     }
     
     func star(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
-        guard let endpointUrl = starEndpoint(repository: repository, username: owner) else { return }
+        guard let endpointUrl = starToggleEndpoint(repository: repository, username: owner) else { return }
         
         self.request(url: endpointUrl, method: .put, headers: headers, completion: { data, error in
             if let error = error {
@@ -54,7 +54,7 @@ extension ApiService {
     }
     
     func unstar(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
-        guard let endpointUrl = starEndpoint(repository: repository, username: owner) else { return }
+        guard let endpointUrl = starToggleEndpoint(repository: repository, username: owner) else { return }
         
         self.request(url: endpointUrl, method: .delete, headers: headers, completion: { data, error in
             if let error = error {
@@ -65,14 +65,17 @@ extension ApiService {
         })
     }
     
-    func isStar(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
-        guard let endpointUrl = starEndpoint(repository: repository, username: owner) else { return }
+    func starList(completion: @escaping ([Repository]?, Error?) -> ()) {
+        guard let endpointUrl = starListEndpoint() else { return }
         
-        self.request(url: endpointUrl, method: .get, headers: headers, completion: { data, error in
-            if let error = error {
-                completion(false, error)
+        self.request(url: endpointUrl, method: .get, headers: headers, completion: { data, error  in
+            let decoder = JSONDecoder()
+            if
+                let data = data,
+                let repositories = try? decoder.decode([Repository].self, from: data) {
+                completion(repositories, nil)
             } else {
-                completion(true, nil)
+                completion(nil, error)
             }
         })
     }

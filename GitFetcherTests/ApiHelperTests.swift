@@ -27,7 +27,15 @@ class ApiHelperTests: XCTestCase {
         let username = "Myname"
         let repositoryName = "Repo"
         let expectedResult = URL.init(string: "https://api.github.com/user/starred/Myname/Repo")
-        let actualResult = mock.starEndpoint(repository: repositoryName, username: username)
+        let actualResult = mock.starToggleEndpoint(repository: repositoryName, username: username)
+        
+        XCTAssertEqual(expectedResult, actualResult)
+    }
+    
+    func testStarListEndpoint() {
+        let mock = MockClass()
+        let expectedResult = URL.init(string: "https://api.github.com/user/starred")
+        let actualResult = mock.starListEndpoint()
         
         XCTAssertEqual(expectedResult, actualResult)
     }

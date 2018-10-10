@@ -179,41 +179,44 @@ class ApiServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
     
-    func testIsStarRepository() {
+    func testListStarred() {
         let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
-        let existingUserName = "TBernatskaya"
-        let existingRepositoryName = "GitFetcher"
+        let reposCount = 1
         
-        stub(condition: isHost(self.host)) { _ in
-            let response = OHHTTPStubsResponse.init()
-            response.statusCode = 204
-            return response
+        if let path = testBundle.path(forResource: "repos", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                
+                stub(condition: isHost(self.host)) { _ in
+                    return OHHTTPStubsResponse(jsonObject: jsonObject, statusCode: 200, headers: nil)
+                }
+            } catch {
+                XCTFail("Cannot read json test file")
+            }
         }
         
-        apiService.isStar(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
-            XCTAssertTrue(succeeded)
+        apiService.starList(completion: { repos, error in
+            XCTAssertNotNil(repos)
             XCTAssertNil(error)
+            XCTAssertEqual(repos!.count, reposCount)
             expectation.fulfill()
         })
-        
+
         wait(for: [expectation], timeout: 10.0)
     }
     
-    func testIsStarRepositoryReceivedError() {
+    func testListStarredReceivedError() {
         let apiService = MockClass()
         let expectation = XCTestExpectation.init(description: "Waiting for response")
-        let existingUserName = "TBernatskaya"
-        let existingRepositoryName = "GitFetcher"
         
         stub(condition: isHost(self.host)) { _ in
-            let response = OHHTTPStubsResponse.init()
-            response.statusCode = 404
-            return response
+            return OHHTTPStubsResponse(error:self.notConnectedError)
         }
         
-        apiService.isStar(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
-            XCTAssertFalse(succeeded)
+        apiService.starList(completion: { repos, error in
+            XCTAssertNil(repos)
             XCTAssertNotNil(error)
             expectation.fulfill()
         })
