@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
     
     var repositoriesViewModel: RepositoriesViewModel? {
         didSet {
-            updateView()
+            repositoriesViewModel?.delegate = self
         }
     }
     
@@ -51,38 +51,15 @@ class MainViewController: UIViewController {
     
     func clearView() {
         repositoriesViewModel = nil
+        searchResultsTableView.isHidden = true
     }
     
     func presentDetails() {
         self.navigationController?.show(detailViewController, sender: self)
     }
-    
-    func fetchRepositories(for searchText: String) {
-        repositories(for: searchText, completion: { [weak self] (repositories, error) in
-            guard let weakSelf = self else { return }
-            
-            if let repositories = repositories {
-                weakSelf.repositoriesViewModel = RepositoriesViewModel.init(with: repositories)
-            } else if let error = error {
-                weakSelf.searchResultsTableView.isHidden = true
-                weakSelf.errorLabel.text = error.localizedDescription
-                weakSelf.errorLabel.isHidden = false
-            }
-        })
-    }
 }
 
 fileprivate extension MainViewController {
-    
-    func updateView() {
-        guard
-            let repositoriesViewModel = self.repositoriesViewModel,
-            repositoriesViewModel.repositories.count > 0
-        else {
-            return showTextMessage()
-        }
-        showSearchResults()
-    }
     
     func showSearchResults() {
         errorLabel.isHidden = true
@@ -132,5 +109,29 @@ fileprivate extension MainViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         searchResultsTableViewBottom.constant = 20
+    }
+}
+
+
+extension MainViewController: RepositoriesUpdateListener {
+    
+    func didUpdateRepositories() {
+        guard
+            let repositoriesViewModel = repositoriesViewModel,
+            let repositories = repositoriesViewModel.repositories,
+            repositories.count > 0
+            
+        else { return showTextMessage() }
+        
+        showSearchResults()
+    }
+    
+    func didReceive(error: Error) {
+        self.searchResultsTableView.isHidden = true
+        self.errorLabel.text = error.localizedDescription
+        self.errorLabel.isHidden = false
+    }
+    
+    func didUpdateStarStatus(to isStarred: Bool) {
     }
 }

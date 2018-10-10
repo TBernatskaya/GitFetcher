@@ -10,14 +10,30 @@ import Foundation
 
 class RepositoriesViewModel {
     
-    var repositories: [Repository]
-    var starredRepositories: [Repository] = []
-    
+    var username: String
+    var repositories: [Repository]?
     weak var delegate: RepositoriesUpdateListener?
     
-    init(with repositories: [Repository]) {
-        self.repositories = repositories
+    init(with username: String) {
+        self.username = username
+        fetchRepositories(for: username)
     }
 }
 
-extension RepositoriesViewModel: ApiService {}
+extension RepositoriesViewModel: ApiService {
+    
+    func fetchRepositories(for searchText: String) {
+        
+        repositories(for: searchText, completion: { [weak self] (repositories, error) in
+            guard let weakSelf = self else { return }
+            
+            if let repositories = repositories {
+                weakSelf.repositories = repositories
+                weakSelf.delegate?.didUpdateRepositories()
+            }
+            else if let error = error {
+                weakSelf.delegate?.didReceive(error: error)
+            }
+        })
+    }
+}

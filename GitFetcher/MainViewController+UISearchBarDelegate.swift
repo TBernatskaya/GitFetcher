@@ -12,7 +12,7 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        fetchRepositories(for: searchText)
+        repositoriesViewModel = RepositoriesViewModel.init(with: searchText)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -23,6 +23,7 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ seachBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        clearView()
     }
 }
 

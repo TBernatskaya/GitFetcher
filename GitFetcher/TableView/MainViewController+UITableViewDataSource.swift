@@ -15,7 +15,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositoriesViewModel?.repositories.count ?? 0
+        guard
+            let viewModel = repositoriesViewModel,
+            let repositories = viewModel.repositories
+        else { return 0 }
+        
+        return repositories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
