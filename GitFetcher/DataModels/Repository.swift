@@ -1,5 +1,5 @@
 //
-//  RepositoryModel.swift
+//  Repository.swift
 //  GitFetcher
 //
 //  Created by Tatiana Bernatskaya on 2018-09-19.
@@ -8,15 +8,22 @@
 
 import Foundation
 
-struct Repository: Codable {
+struct Repository: Codable, StarStatus {
+    var isStarred: Bool = false
     
     var name: String
+    var owner: Owner
     var description: String
     var url: URL
     
     enum CodingKeys: String, CodingKey {
         case name
+        case owner
         case description
         case url = "html_url"
     }
+}
+
+protocol StarStatus {
+    var isStarred: Bool { get }
 }

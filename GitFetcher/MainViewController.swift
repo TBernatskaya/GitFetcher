@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class MainViewController: UIViewController {
 
@@ -16,9 +15,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var searchResultsTableViewBottom: NSLayoutConstraint!
     
-    var repositoriesList: [Repository]? {
+    lazy var detailViewController: DetailViewController = {
+        let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
+        let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        return detailViewController
+    }()
+    
+    var repositoriesViewModel: RepositoriesViewModel? {
         didSet {
-            updateView()
+            repositoriesViewModel?.delegate = self
         }
     }
     
@@ -45,28 +50,16 @@ class MainViewController: UIViewController {
     }
     
     func clearView() {
-        repositoriesList?.removeAll()
+        repositoriesViewModel = nil
+        searchResultsTableView.isHidden = true
     }
     
-    func openSafari(with url: URL) {
-        let safariViewController = SFSafariViewController(url: url)
-        safariViewController.modalPresentationStyle = .formSheet
-        self.navigationController?.present(safariViewController, animated:true, completion:nil)
+    func presentDetails() {
+        self.navigationController?.show(detailViewController, sender: self)
     }
 }
 
 fileprivate extension MainViewController {
-    
-    func updateView() {
-        
-        guard
-            let repositoriesList = self.repositoriesList,
-            repositoriesList.count > 0
-        else {
-            return showTextMessage()
-        }
-        showSearchResults()
-    }
     
     func showSearchResults() {
         errorLabel.isHidden = true
@@ -116,5 +109,29 @@ fileprivate extension MainViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         searchResultsTableViewBottom.constant = 20
+    }
+}
+
+
+extension MainViewController: RepositoriesUpdateListener {
+    
+    func didUpdateRepositories() {
+        guard
+            let repositoriesViewModel = repositoriesViewModel,
+            let repositories = repositoriesViewModel.repositories,
+            repositories.count > 0
+            
+        else { return showTextMessage() }
+        
+        showSearchResults()
+    }
+    
+    func didReceive(error: Error) {
+        self.searchResultsTableView.isHidden = true
+        self.errorLabel.text = error.localizedDescription
+        self.errorLabel.isHidden = false
+    }
+    
+    func didUpdateStarStatus(to isStarred: Bool) {
     }
 }

@@ -12,16 +12,7 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        
-        ApiService().repositories(for: searchText, completion: { repositories, error in
-            if let repositories = repositories {
-                self.repositoriesList = repositories
-            } else if let error = error {
-                self.searchResultsTableView.isHidden = true
-                self.errorLabel.text = error.localizedDescription
-                self.errorLabel.isHidden = false
-            }
-        })
+        repositoriesViewModel = RepositoriesViewModel.init(with: searchText)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -32,5 +23,8 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ seachBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        clearView()
     }
 }
+
+extension MainViewController: ApiService {}
