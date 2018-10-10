@@ -12,16 +12,7 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        
-        repositories(for: searchText, completion: { repositories, error in
-            if let repositories = repositories {
-                self.repositoriesList = repositories.map{ RepositoryViewModel.init(with: $0) }
-            } else if let error = error {
-                self.searchResultsTableView.isHidden = true
-                self.errorLabel.text = error.localizedDescription
-                self.errorLabel.isHidden = false
-            }
-        })
+        fetchRepositories(for: searchText)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

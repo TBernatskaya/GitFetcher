@@ -15,27 +15,27 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositoriesList?.count ?? 0
+        return repositoriesViewModel?.repositories.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchResultsTableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath) as! SearchResultTableViewCell
         
-        guard let viewModel = viewModel(by: indexPath) else { return cell }
-        cell.nameLabel.text = viewModel.repository.name
-        cell.descriptionLabel.text = viewModel.repository.description
-        cell.urlLabel.text = viewModel.repository.url.absoluteString
+        guard let cellViewModel = cellViewModel(by: indexPath) else { return cell }
+        cell.nameLabel.text = cellViewModel.name
+        cell.descriptionLabel.text = cellViewModel.description
+        cell.urlLabel.text = cellViewModel.url.absoluteString
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        detailViewController.repositoryViewModel = viewModel(by: indexPath)
+        detailViewController.repositoryViewModel = cellViewModel(by: indexPath)
         presentDetails()
     }
     
-    fileprivate func viewModel(by indexPath: IndexPath) -> RepositoryViewModel? {
-        guard let repositoriesList = self.repositoriesList else { return nil }
+    fileprivate func cellViewModel(by indexPath: IndexPath) -> Repository? {
+        guard let repositoriesList = repositoriesViewModel?.repositories else { return nil }
         
         return repositoriesList[indexPath.row]
     }

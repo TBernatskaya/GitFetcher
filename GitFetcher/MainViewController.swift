@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
         return detailViewController
     }()
     
-    var repositoriesList: [RepositoryViewModel]? {
+    var repositoriesViewModel: RepositoriesViewModel? {
         didSet {
             updateView()
         }
@@ -50,11 +50,25 @@ class MainViewController: UIViewController {
     }
     
     func clearView() {
-        repositoriesList?.removeAll()
+        repositoriesViewModel = nil
     }
     
     func presentDetails() {
         self.navigationController?.show(detailViewController, sender: self)
+    }
+    
+    func fetchRepositories(for searchText: String) {
+        repositories(for: searchText, completion: { [weak self] (repositories, error) in
+            guard let weakSelf = self else { return }
+            
+            if let repositories = repositories {
+                weakSelf.repositoriesViewModel = RepositoriesViewModel.init(with: repositories)
+            } else if let error = error {
+                weakSelf.searchResultsTableView.isHidden = true
+                weakSelf.errorLabel.text = error.localizedDescription
+                weakSelf.errorLabel.isHidden = false
+            }
+        })
     }
 }
 
@@ -62,8 +76,8 @@ fileprivate extension MainViewController {
     
     func updateView() {
         guard
-            let repositoriesList = self.repositoriesList,
-            repositoriesList.count > 0
+            let repositoriesViewModel = self.repositoriesViewModel,
+            repositoriesViewModel.repositories.count > 0
         else {
             return showTextMessage()
         }

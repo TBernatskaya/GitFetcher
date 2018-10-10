@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct Repository: Codable {
+struct Repository: Codable, StarStatus {
+    var isStarred: Bool = false
+    
     var name: String
     var owner: Owner
     var description: String
@@ -20,4 +22,8 @@ struct Repository: Codable {
         case description
         case url = "html_url"
     }
+}
+
+protocol StarStatus {
+    var isStarred: Bool { get }
 }

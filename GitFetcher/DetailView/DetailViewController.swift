@@ -8,24 +8,13 @@
 
 import UIKit
 
-protocol RepositoryActionLisener: class {
-    func starStatusDidchange(to newStatus: StarStatus)
-}
-
-enum StarStatus {
-    case starred
-    case unstarred
-}
-
 class DetailViewController: UIViewController {
     
     @IBAction func starButtonDidTap(_ sender: Any) {
         toggleStarStatus()
     }
     
-    weak var delegate: RepositoryActionLisener?
-    
-    var repositoryViewModel: RepositoryViewModel? {
+    var repositoryViewModel: Repository? {
         didSet{
             updateView()
         }
@@ -34,7 +23,7 @@ class DetailViewController: UIViewController {
 
 fileprivate extension DetailViewController {
     func updateView() {
-        self.title = repositoryViewModel?.repository.name
+        self.title = repositoryViewModel?.name
     }
     
     func toggleStarStatus() {
