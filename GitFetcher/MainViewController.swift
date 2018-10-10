@@ -27,11 +27,14 @@ class MainViewController: UIViewController {
         }
     }
     
+    let starredRepositoriesCache = StarredRepositoriesCache()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Search"
-        
         registerClasses()
+
+        starredRepositoriesCache.fetchStarredRepositories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
