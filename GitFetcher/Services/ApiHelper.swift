@@ -14,7 +14,8 @@ fileprivate enum Servers: String {
 
 fileprivate enum ApiRoute: String {
     case repos = "/users/{username}/repos"
-    case star = "/user/starred/{username}/{reponame}"
+    case starToggle = "/user/starred/{username}/{reponame}"
+    case starList = "/user/starred"
 }
 
 protocol ApiHelper {}
@@ -27,11 +28,16 @@ extension ApiHelper {
         return URL.init(string: endpointString)
     }
     
-    func starEndpoint(repository: String, username: String) -> URL? {
+    func starToggleEndpoint(repository: String, username: String) -> URL? {
         let endpointString = Servers.main.rawValue +
-                            ApiRoute.star.rawValue.replacingOccurrences(of: "{username}", with:username)
+                            ApiRoute.starToggle.rawValue.replacingOccurrences(of: "{username}", with:username)
                             .replacingOccurrences(of: "{reponame}", with: repository)
         
+        return URL.init(string: endpointString)
+    }
+    
+    func starListEndpoint() -> URL? {
+        let endpointString = Servers.main.rawValue + ApiRoute.starList.rawValue
         return URL.init(string: endpointString)
     }
 }
