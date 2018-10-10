@@ -26,5 +26,3 @@ extension MainViewController: UISearchBarDelegate {
         clearView()
     }
 }
-
-extension MainViewController: ApiService {}
