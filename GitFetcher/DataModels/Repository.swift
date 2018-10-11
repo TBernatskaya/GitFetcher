@@ -8,22 +8,20 @@
 
 import Foundation
 
-struct Repository: Codable, StarStatus {
-    var isStarred: Bool = false
-    
+struct Repository: Codable {
+    var id: Int
     var name: String
     var owner: Owner
     var description: String
     var url: URL
     
+    var isStarred: Bool = false
+    
     enum CodingKeys: String, CodingKey {
+        case id
         case name
         case owner
         case description
         case url = "html_url"
     }
-}
-
-protocol StarStatus {
-    var isStarred: Bool { get }
 }

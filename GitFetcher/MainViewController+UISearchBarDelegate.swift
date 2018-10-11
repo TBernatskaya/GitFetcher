@@ -12,7 +12,7 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        repositoriesViewModel = RepositoriesViewModel.init(with: searchText)
+        repositoriesViewModel = RepositoriesViewModel.init(with: searchText, starredRepositories: starredRepositoriesCache)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

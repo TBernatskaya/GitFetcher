@@ -21,5 +21,6 @@ class SearchResultTableViewCell: UITableViewCell {
         nameLabel.text = ""
         descriptionLabel.text = ""
         urlLabel.text = ""
+        starStatusLabel.text = ""
     }
 }

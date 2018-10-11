@@ -30,6 +30,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = cellViewModel.name
         cell.descriptionLabel.text = cellViewModel.description
         cell.urlLabel.text = cellViewModel.url.absoluteString
+        cell.starStatusLabel.text = cellViewModel.isStarred ? "Starred" : "Is not starred"
         
         return cell
     }
