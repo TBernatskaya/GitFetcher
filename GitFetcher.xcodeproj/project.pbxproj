@@ -134,6 +134,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D4ED1B68216FA9BF00ECCBFD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D4ED1B60216D326A00ECCBFD /* RepositoriesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		D831FFC2216B9A8E000DB1CD /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +176,7 @@
 		D8C3075C2152299F002FFE14 /* GitFetcher */ = {
 			isa = PBXGroup;
 			children = (
+				D4ED1B68216FA9BF00ECCBFD /* ViewModels */,
 				D8DA40BE2152C83E00763D69 /* DataModels */,
 				D8DA40BC2152C7FC00763D69 /* Services */,
 				D8DA40BF2152C85600763D69 /* TableView */,
@@ -179,7 +188,6 @@
 				D8C30766215229A1002FFE14 /* LaunchScreen.storyboard */,
 				D8C30769215229A1002FFE14 /* Info.plist */,
 				D831FFC2216B9A8E000DB1CD /* DetailView */,
-				D4ED1B66216E986100ECCBFD /* StarredRepositoriesCache.swift */,
 			);
 			path = GitFetcher;
 			sourceTree = "<group>";
@@ -218,9 +226,9 @@
 			isa = PBXGroup;
 			children = (
 				D81CCDFC2152605E003A4315 /* Repository.swift */,
-				D4ED1B60216D326A00ECCBFD /* RepositoriesViewModel.swift */,
 				D4ED1B64216D3E3E00ECCBFD /* Owner.swift */,
 				D4ED1B62216D340D00ECCBFD /* RepositoriesUpdateListener.swift */,
+				D4ED1B66216E986100ECCBFD /* StarredRepositoriesCache.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
