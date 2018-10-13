@@ -10,6 +10,9 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var forkLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var starButton: UIButton!
     @IBAction func starButtonDidTap(_ sender: Any) {
         toggleStarStatus()
@@ -28,6 +31,11 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let repositoryViewModel = repositoryViewModel else { return }
+        
+        forkLabel.text = repositoryViewModel.isFork ? "Forked" : "Not a fork"
+        urlLabel.text = repositoryViewModel.url.absoluteString
+        descriptionLabel.text = repositoryViewModel.description
+        
         switch repositoryViewModel.isStarred {
         case true:
             starButton.imageView?.backgroundColor = style.starBackgroundColor(for: .starred)

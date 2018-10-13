@@ -14,6 +14,7 @@ class Repository: Codable {
     var owner: Owner
     var description: String
     var url: URL
+    var isFork: Bool
     
     var isStarred: Bool = false
     
@@ -23,5 +24,6 @@ class Repository: Codable {
         case owner
         case description
         case url = "html_url"
+        case isFork = "fork"
     }
 }
