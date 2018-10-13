@@ -11,5 +11,4 @@ import Foundation
 protocol RepositoriesUpdateListener: class {
     func didUpdateRepositories()
     func didReceive(error: Error)
-    func didUpdateStarStatus(to isStarred: Bool)
 }

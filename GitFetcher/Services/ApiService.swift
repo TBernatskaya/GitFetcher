@@ -45,6 +45,7 @@ extension ApiService {
         guard let endpointUrl = starToggleEndpoint(repository: repository, username: owner) else { return }
         
         self.request(url: endpointUrl, method: .put, headers: headers, completion: { data, error in
+            // Success in case Status: 204 No Content
             if let error = error {
                 completion(false, error)
             } else {
@@ -57,6 +58,7 @@ extension ApiService {
         guard let endpointUrl = starToggleEndpoint(repository: repository, username: owner) else { return }
         
         self.request(url: endpointUrl, method: .delete, headers: headers, completion: { data, error in
+            // Success in case Status: 204 No Content
             if let error = error {
                 completion(false, error)
             } else {

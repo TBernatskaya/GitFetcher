@@ -24,4 +24,12 @@ class StarredRepositoriesCache: ApiService {
             }
         })
     }
+    
+    func add(item: Repository) {
+        repositories.append(item)
+    }
+    
+    func remove(repositoryID: Int) {
+        repositories.removeAll(where: {$0.id == repositoryID} )
+    }
 }

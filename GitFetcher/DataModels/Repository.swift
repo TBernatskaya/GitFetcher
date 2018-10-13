@@ -8,12 +8,13 @@
 
 import Foundation
 
-struct Repository: Codable {
+class Repository: Codable {
     var id: Int
     var name: String
     var owner: Owner
     var description: String
     var url: URL
+    var isFork: Bool
     
     var isStarred: Bool = false
     
@@ -23,5 +24,6 @@ struct Repository: Codable {
         case owner
         case description
         case url = "html_url"
+        case isFork = "fork"
     }
 }

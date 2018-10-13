@@ -18,23 +18,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-t9-ATO">
-                                <rect key="frame" x="42" y="119" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="starButtonDidTap:" destination="2tX-bS-Zam" eventType="touchUpInside" id="2Vn-Z2-o2w"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="UIb-WU-pHI">
+                                <rect key="frame" x="16" y="120" width="343" height="130"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-t9-ATO">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Q0f-dc-e1O"/>
+                                            <constraint firstAttribute="width" secondItem="4sA-t9-ATO" secondAttribute="height" multiplier="1:1" id="oZ3-WB-4mx"/>
+                                        </constraints>
+                                        <state key="normal" image="star72Darkblue"/>
+                                        <connections>
+                                            <action selector="starButtonDidTap:" destination="2tX-bS-Zam" eventType="touchUpInside" id="2Vn-Z2-o2w"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-MQ-Qhj">
+                                        <rect key="frame" x="0.0" y="46" width="38.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDg-As-0xQ">
+                                        <rect key="frame" x="0.0" y="80" width="37.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf2-qH-TIf">
+                                        <rect key="frame" x="0.0" y="114" width="33" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="svO-tc-ya6" firstAttribute="trailing" secondItem="UIb-WU-pHI" secondAttribute="trailing" constant="16" id="6vR-R5-1Jz"/>
+                            <constraint firstItem="UIb-WU-pHI" firstAttribute="leading" secondItem="svO-tc-ya6" secondAttribute="leading" constant="16" id="cmN-nR-qVQ"/>
+                            <constraint firstItem="UIb-WU-pHI" firstAttribute="top" secondItem="svO-tc-ya6" secondAttribute="top" constant="100" id="mop-F4-Xs8"/>
+                            <constraint firstItem="svO-tc-ya6" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UIb-WU-pHI" secondAttribute="bottom" constant="16" id="npT-Yv-gCo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="svO-tc-ya6"/>
                     </view>
                     <navigationItem key="navigationItem" id="mYx-2l-xkb"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="TDg-As-0xQ" id="upF-6K-Xot"/>
+                        <outlet property="forkLabel" destination="PeE-MQ-Qhj" id="9iW-SR-a7c"/>
+                        <outlet property="starButton" destination="4sA-t9-ATO" id="SRQ-at-jku"/>
+                        <outlet property="urlLabel" destination="jf2-qH-TIf" id="q2F-Wl-LbR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SpC-NN-x8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="791.20000000000005" y="-20.239880059970016"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star72Darkblue" width="72" height="72"/>
+    </resources>
 </document>
