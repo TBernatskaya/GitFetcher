@@ -18,12 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-t9-ATO">
-                                <rect key="frame" x="16" y="120" width="100" height="30"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-t9-ATO">
+                                <rect key="frame" x="16" y="120" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Q0f-dc-e1O"/>
+                                    <constraint firstAttribute="width" constant="30" id="Q0f-dc-e1O"/>
+                                    <constraint firstAttribute="width" secondItem="4sA-t9-ATO" secondAttribute="height" multiplier="1:1" id="oZ3-WB-4mx"/>
                                 </constraints>
-                                <state key="normal" title="Star"/>
+                                <state key="normal" image="star72Darkblue"/>
                                 <connections>
                                     <action selector="starButtonDidTap:" destination="2tX-bS-Zam" eventType="touchUpInside" id="2Vn-Z2-o2w"/>
                                 </connections>
@@ -46,4 +47,7 @@
             <point key="canvasLocation" x="791.20000000000005" y="-20.239880059970016"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star72Darkblue" width="72" height="72"/>
+    </resources>
 </document>

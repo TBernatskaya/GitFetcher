@@ -23,14 +23,16 @@ class DetailViewController: UIViewController {
         }
     }
     
+    let style = Style()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let repositoryViewModel = repositoryViewModel else { return }
         switch repositoryViewModel.isStarred {
         case true:
-            starButton.titleLabel?.text = "Unstar"
+            starButton.imageView?.backgroundColor = style.starBackgroundColor(for: .starred)
         case false:
-            starButton.titleLabel?.text = "Star"
+            starButton.imageView?.backgroundColor = style.starBackgroundColor(for: .unstarred)
         }
         
     }
@@ -47,8 +49,10 @@ fileprivate extension DetailViewController {
         switch repositoryViewModel.isStarred {
         case true:
             self.delegate?.unstar(repository: repositoryViewModel)
+            starButton.imageView?.backgroundColor = style.starBackgroundColor(for: .unstarred)
         case false:
             self.delegate?.star(repository: repositoryViewModel)
+            starButton.imageView?.backgroundColor = style.starBackgroundColor(for: .starred)
         }
     }
 }

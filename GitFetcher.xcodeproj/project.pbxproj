@@ -21,6 +21,7 @@
 		D831FFBF216B9A73000DB1CD /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */; };
 		D831FFC1216B9A86000DB1CD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFC0216B9A86000DB1CD /* DetailViewController.swift */; };
 		D831FFD02171DBB1000DB1CD /* RepositoriesUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFCF2171DBB1000DB1CD /* RepositoriesUpdater.swift */; };
+		D831FFD22171F79C000DB1CD /* DetailViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFD12171F79C000DB1CD /* DetailViewStyle.swift */; };
 		D8C3075E2152299F002FFE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3075D2152299F002FFE14 /* AppDelegate.swift */; };
 		D8C307602152299F002FFE14 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3075F2152299F002FFE14 /* MainViewController.swift */; };
 		D8C307632152299F002FFE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8C307612152299F002FFE14 /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		D831FFC0216B9A86000DB1CD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D831FFCF2171DBB1000DB1CD /* RepositoriesUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesUpdater.swift; sourceTree = "<group>"; };
+		D831FFD12171F79C000DB1CD /* DetailViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewStyle.swift; sourceTree = "<group>"; };
 		D8C3075A2152299F002FFE14 /* GitFetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitFetcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C3075D2152299F002FFE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8C3075F2152299F002FFE14 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */,
 				D831FFC0216B9A86000DB1CD /* DetailViewController.swift */,
 				D831FFCF2171DBB1000DB1CD /* RepositoriesUpdater.swift */,
+				D831FFD12171F79C000DB1CD /* DetailViewStyle.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				D4ED1B63216D340D00ECCBFD /* RepositoriesUpdateListener.swift in Sources */,
 				D81CCDFB2152506B003A4315 /* ApiService.swift in Sources */,
 				D8DA40B82152C74500763D69 /* MainViewController+UISearchBarDelegate.swift in Sources */,
+				D831FFD22171F79C000DB1CD /* DetailViewStyle.swift in Sources */,
 				D831FFD02171DBB1000DB1CD /* RepositoriesUpdater.swift in Sources */,
 				D8C3075E2152299F002FFE14 /* AppDelegate.swift in Sources */,
 				D831FFC1216B9A86000DB1CD /* DetailViewController.swift in Sources */,

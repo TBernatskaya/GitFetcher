@@ -31,13 +31,10 @@ extension RepositoriesViewModel: ApiService, RepositoriesUpdater {
             guard let weakSelf = self else { return }
             
             if let repositories = repositories {
-                let data = repositories.map{ item -> (Repository) in
-                    var newItem = item
-                    newItem.isStarred = weakSelf.starStatus(for: newItem.id)
-                    return newItem
+                weakSelf.repositories = repositories.map{ item -> (Repository) in
+                    item.isStarred = weakSelf.starStatus(for: item.id)
+                    return item
                 }
-                
-                weakSelf.repositories = data
                 weakSelf.delegate?.didUpdateRepositories()
                 
             } else if let error = error {
@@ -51,20 +48,9 @@ extension RepositoriesViewModel: ApiService, RepositoriesUpdater {
             guard let weakSelf = self else { return }
             
             if success {
+                repository.isStarred = true
                 weakSelf.starredRepositories?.add(item: repository)
-                
-                if let repositories = weakSelf.repositories {
-                    let data = repositories.map{ item -> (Repository) in
-                        var newItem = item
-                        
-                        if (item.id == repository.id) {
-                            newItem.isStarred = true
-                        }
-                        return newItem
-                    }
-                    weakSelf.repositories = data
-                    weakSelf.delegate?.didUpdateRepositories()
-                }
+                weakSelf.delegate?.didUpdateRepositories()
             }
             
             if let error = error {
@@ -78,20 +64,9 @@ extension RepositoriesViewModel: ApiService, RepositoriesUpdater {
             guard let weakSelf = self else { return }
             
             if success {
+                repository.isStarred = false
                 weakSelf.starredRepositories?.remove(repositoryID: repository.id)
-                
-                if let repositories = weakSelf.repositories {
-                    let data = repositories.map{ item -> (Repository) in
-                        var newItem = item
-                        
-                        if (item.id == repository.id) {
-                            newItem.isStarred = false
-                        }
-                        return newItem
-                    }
-                    weakSelf.repositories = data
-                    weakSelf.delegate?.didUpdateRepositories()
-                }
+                weakSelf.delegate?.didUpdateRepositories()
             }
             
             if let error = error {

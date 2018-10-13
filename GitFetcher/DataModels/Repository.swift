@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Repository: Codable {
+class Repository: Codable {
     var id: Int
     var name: String
     var owner: Owner
