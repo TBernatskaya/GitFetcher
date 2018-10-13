@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     
     var repositoryViewModel: Repository? {
         didSet{
-            updateView()
+            self.title = repositoryViewModel?.name
         }
     }
     
@@ -30,6 +30,12 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateView()
+    }
+}
+
+fileprivate extension DetailViewController {
+    func updateView() {
         guard let repositoryViewModel = repositoryViewModel else { return }
         
         forkLabel.text = repositoryViewModel.isFork ? "Forked" : "Not a fork"
@@ -42,13 +48,6 @@ class DetailViewController: UIViewController {
         case false:
             starButton.imageView?.backgroundColor = style.starBackgroundColor(for: .unstarred)
         }
-        
-    }
-}
-
-fileprivate extension DetailViewController {
-    func updateView() {
-        self.title = repositoryViewModel?.name
     }
     
     func toggleStarStatus() {
