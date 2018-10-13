@@ -12,7 +12,7 @@ class Repository: Codable {
     var id: Int
     var name: String
     var owner: Owner
-    var description: String
+    var description: String?
     var url: URL
     var isFork: Bool
     
