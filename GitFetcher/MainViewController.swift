@@ -57,7 +57,9 @@ class MainViewController: UIViewController {
         searchResultsTableView.isHidden = true
     }
     
-    func presentDetails() {
+    func presentDetails(for repository: Repository) {
+        detailViewController.repositoryViewModel = repository
+        detailViewController.delegate = repositoriesViewModel
         self.navigationController?.show(detailViewController, sender: self)
     }
 }
@@ -133,8 +135,5 @@ extension MainViewController: RepositoriesUpdateListener {
         self.searchResultsTableView.isHidden = true
         self.errorLabel.text = error.localizedDescription
         self.errorLabel.isHidden = false
-    }
-    
-    func didUpdateStarStatus(to isStarred: Bool) {
     }
 }

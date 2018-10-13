@@ -18,19 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-t9-ATO">
-                                <rect key="frame" x="42" y="119" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-t9-ATO">
+                                <rect key="frame" x="16" y="120" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Q0f-dc-e1O"/>
+                                </constraints>
+                                <state key="normal" title="Star"/>
                                 <connections>
                                     <action selector="starButtonDidTap:" destination="2tX-bS-Zam" eventType="touchUpInside" id="2Vn-Z2-o2w"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4sA-t9-ATO" firstAttribute="leading" secondItem="svO-tc-ya6" secondAttribute="leading" constant="16" id="3Q9-Cc-FhZ"/>
+                            <constraint firstItem="4sA-t9-ATO" firstAttribute="top" secondItem="svO-tc-ya6" secondAttribute="top" constant="100" id="CT9-bU-i8K"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="svO-tc-ya6"/>
                     </view>
                     <navigationItem key="navigationItem" id="mYx-2l-xkb"/>
+                    <connections>
+                        <outlet property="starButton" destination="4sA-t9-ATO" id="SRQ-at-jku"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SpC-NN-x8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -23,7 +23,7 @@ class RepositoriesViewModel {
     }
 }
 
-extension RepositoriesViewModel: ApiService {
+extension RepositoriesViewModel: ApiService, RepositoriesUpdater {
     
     func fetchRepositories(for searchText: String) {
         
@@ -33,7 +33,7 @@ extension RepositoriesViewModel: ApiService {
             if let repositories = repositories {
                 let data = repositories.map{ item -> (Repository) in
                     var newItem = item
-                    newItem.isStarred = weakSelf.starStatus(for: newItem)
+                    newItem.isStarred = weakSelf.starStatus(for: newItem.id)
                     return newItem
                 }
                 
@@ -45,11 +45,65 @@ extension RepositoriesViewModel: ApiService {
             }
         })
     }
+    
+    func star(repository: Repository) {
+        star(repository: repository.name, owner: repository.owner.login, completion: { [weak self] (success, error) in
+            guard let weakSelf = self else { return }
+            
+            if success {
+                weakSelf.starredRepositories?.add(item: repository)
+                
+                if let repositories = weakSelf.repositories {
+                    let data = repositories.map{ item -> (Repository) in
+                        var newItem = item
+                        
+                        if (item.id == repository.id) {
+                            newItem.isStarred = true
+                        }
+                        return newItem
+                    }
+                    weakSelf.repositories = data
+                    weakSelf.delegate?.didUpdateRepositories()
+                }
+            }
+            
+            if let error = error {
+                weakSelf.delegate?.didReceive(error: error)
+            }
+        })
+    }
+    
+    func unstar(repository: Repository) {
+        unstar(repository: repository.name, owner: repository.owner.login, completion: { [weak self] (success, error) in
+            guard let weakSelf = self else { return }
+            
+            if success {
+                weakSelf.starredRepositories?.remove(repositoryID: repository.id)
+                
+                if let repositories = weakSelf.repositories {
+                    let data = repositories.map{ item -> (Repository) in
+                        var newItem = item
+                        
+                        if (item.id == repository.id) {
+                            newItem.isStarred = false
+                        }
+                        return newItem
+                    }
+                    weakSelf.repositories = data
+                    weakSelf.delegate?.didUpdateRepositories()
+                }
+            }
+            
+            if let error = error {
+                weakSelf.delegate?.didReceive(error: error)
+            }
+        })
+    }
 }
 
 fileprivate extension RepositoriesViewModel {
-    func starStatus(for repository: Repository) -> Bool {
+    func starStatus(for repositoryID: Int) -> Bool {
         guard let starredRepositories = starredRepositories else { return false }
-        return starredRepositories.repositories.contains{ $0.id == repository.id }
+        return starredRepositories.repositories.contains{ $0.id == repositoryID }
     }
 }

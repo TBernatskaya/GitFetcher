@@ -36,8 +36,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        detailViewController.repositoryViewModel = cellViewModel(by: indexPath)
-        presentDetails()
+        guard let repository = cellViewModel(by: indexPath) else { return }
+        presentDetails(for: repository)
     }
     
     fileprivate func cellViewModel(by indexPath: IndexPath) -> Repository? {
