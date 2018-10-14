@@ -9,7 +9,7 @@ This app fetches list of GitHub repositories by username (for ex. TBernatskaya).
  - error handling
  - unit tests
  
-**Future suggestions:**
+**TODO:**
  - save private key to Keychain
  - improve detail view UI
  - process some "heavy" operations in dispatch queue
