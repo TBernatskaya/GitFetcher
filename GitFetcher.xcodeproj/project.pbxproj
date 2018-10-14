@@ -16,6 +16,7 @@
 		D4ED1B63216D340D00ECCBFD /* RepositoriesUpdateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B62216D340D00ECCBFD /* RepositoriesUpdateListener.swift */; };
 		D4ED1B65216D3E3E00ECCBFD /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B64216D3E3E00ECCBFD /* Owner.swift */; };
 		D4ED1B67216E986100ECCBFD /* StarredRepositoriesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B66216E986100ECCBFD /* StarredRepositoriesCache.swift */; };
+		D4ED1B6A2173383900ECCBFD /* RepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B692173383900ECCBFD /* RepositoriesViewModelTests.swift */; };
 		D81CCDFB2152506B003A4315 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFA2152506B003A4315 /* ApiService.swift */; };
 		D81CCDFD2152605E003A4315 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFC2152605E003A4315 /* Repository.swift */; };
 		D831FFBF216B9A73000DB1CD /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */; };
@@ -69,6 +70,7 @@
 		D4ED1B62216D340D00ECCBFD /* RepositoriesUpdateListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesUpdateListener.swift; sourceTree = "<group>"; };
 		D4ED1B64216D3E3E00ECCBFD /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		D4ED1B66216E986100ECCBFD /* StarredRepositoriesCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredRepositoriesCache.swift; sourceTree = "<group>"; };
+		D4ED1B692173383900ECCBFD /* RepositoriesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModelTests.swift; sourceTree = "<group>"; };
 		D81CCDFA2152506B003A4315 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		D81CCDFC2152605E003A4315 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				D8DA40AF21528B3E00763D69 /* repos.json */,
 				D4ED1B5E216D2A4600ECCBFD /* ApiHelperTests.swift */,
 				D8C30772215229A1002FFE14 /* ApiServiceTests.swift */,
+				D4ED1B692173383900ECCBFD /* RepositoriesViewModelTests.swift */,
 				D8C30774215229A1002FFE14 /* Info.plist */,
 			);
 			path = GitFetcherTests;
@@ -497,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4ED1B6A2173383900ECCBFD /* RepositoriesViewModelTests.swift in Sources */,
 				D4ED1B5F216D2A4600ECCBFD /* ApiHelperTests.swift in Sources */,
 				D8C30773215229A1002FFE14 /* ApiServiceTests.swift in Sources */,
 			);

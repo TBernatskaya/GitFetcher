@@ -9,14 +9,14 @@
 import Foundation
 
 class StarredRepositoriesCache: ApiService {
-    var repositories: [Repository] = []
+    var repositoryIDs: [Int] = []
     
     func fetchStarredRepositories() {
         starList(completion: { [weak self] (repositories, error) in
             guard let weakSelf = self else { return }
             
             if let repositories = repositories {
-                weakSelf.repositories = repositories
+                weakSelf.repositoryIDs = repositories.compactMap{ $0.id}
             }
             
             if let error = error {
@@ -26,10 +26,10 @@ class StarredRepositoriesCache: ApiService {
     }
     
     func add(item: Repository) {
-        repositories.append(item)
+        repositoryIDs.append(item.id)
     }
     
     func remove(repositoryID: Int) {
-        repositories.removeAll(where: {$0.id == repositoryID} )
+        repositoryIDs.removeAll(where: { $0 == repositoryID })
     }
 }
