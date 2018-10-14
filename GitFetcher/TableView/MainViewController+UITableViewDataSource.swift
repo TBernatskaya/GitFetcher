@@ -25,8 +25,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchResultsTableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath) as! SearchResultTableViewCell
-        
         guard let cellViewModel = cellViewModel(by: indexPath) else { return cell }
+        
         cell.nameLabel.text = cellViewModel.name
         cell.descriptionLabel.text = cellViewModel.description
         cell.urlLabel.text = cellViewModel.url.absoluteString
@@ -42,7 +42,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     fileprivate func cellViewModel(by indexPath: IndexPath) -> Repository? {
         guard let repositoriesList = repositoriesViewModel?.repositories else { return nil }
-        
         return repositoriesList[indexPath.row]
     }
 }

@@ -34,7 +34,14 @@ class MainViewController: UIViewController {
         self.title = "Search"
         registerClasses()
 
-        starredRepositoriesCache.fetchStarredRepositories()
+        starredRepositoriesCache.fetchStarredRepositories(completion: { [weak self] error in
+            guard
+                let weakSelf = self,
+                let error = error
+            else { return }
+            
+            weakSelf.showTextMessage(with: error.localizedDescription)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,8 +79,9 @@ fileprivate extension MainViewController {
         searchResultsTableView.reloadData()
     }
     
-    func showTextMessage() {
+    func showTextMessage(with text: String) {
         searchResultsTableView.isHidden = true
+        errorLabel.text = text
         errorLabel.isHidden = false
     }
     
@@ -106,9 +114,11 @@ fileprivate extension MainViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-        let keyboardHeigt = keyboardFrame.height
+        guard
+            let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        else { return }
         
+        let keyboardHeigt = keyboardFrame.height
         searchResultsTableViewBottom.constant = keyboardHeigt
     }
     
@@ -117,7 +127,6 @@ fileprivate extension MainViewController {
     }
 }
 
-
 extension MainViewController: RepositoriesUpdateListener {
     
     func didUpdateRepositories() {
@@ -125,15 +134,12 @@ extension MainViewController: RepositoriesUpdateListener {
             let repositoriesViewModel = repositoriesViewModel,
             let repositories = repositoriesViewModel.repositories,
             repositories.count > 0
-            
-        else { return showTextMessage() }
+        else { return showTextMessage(with: "Cannot find repositories") }
         
         showSearchResults()
     }
     
     func didReceive(error: Error) {
-        self.searchResultsTableView.isHidden = true
-        self.errorLabel.text = error.localizedDescription
-        self.errorLabel.isHidden = false
+        self.showTextMessage(with: error.localizedDescription)
     }
 }

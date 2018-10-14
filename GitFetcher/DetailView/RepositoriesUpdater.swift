@@ -9,6 +9,6 @@
 import Foundation
 
 protocol RepositoriesUpdater: class {
-    func star(repository: Repository)
-    func unstar(repository: Repository)
+    func star(repository: Repository, completion: @escaping (Error?) -> ())
+    func unstar(repository: Repository, completion: @escaping (Error?) -> ())
 }

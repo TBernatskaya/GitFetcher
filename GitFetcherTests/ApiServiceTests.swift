@@ -111,8 +111,7 @@ class ApiServiceTests: XCTestCase {
             return response
         }
         
-        apiService.star(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
-            XCTAssertTrue(succeeded)
+        apiService.star(repository: existingRepositoryName, owner: existingUserName, completion: { error in
             XCTAssertNil(error)
             expectation.fulfill()
         })
@@ -130,8 +129,7 @@ class ApiServiceTests: XCTestCase {
             return OHHTTPStubsResponse(error:self.notConnectedError)
         }
         
-        apiService.star(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
-            XCTAssertFalse(succeeded)
+        apiService.star(repository: existingRepositoryName, owner: existingUserName, completion: { error in
             XCTAssertNotNil(error)
             expectation.fulfill()
         })
@@ -151,8 +149,7 @@ class ApiServiceTests: XCTestCase {
             return response
         }
         
-        apiService.unstar(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
-            XCTAssertTrue(succeeded)
+        apiService.unstar(repository: existingRepositoryName, owner: existingUserName, completion: { error in
             XCTAssertNil(error)
             expectation.fulfill()
         })
@@ -170,8 +167,7 @@ class ApiServiceTests: XCTestCase {
             return OHHTTPStubsResponse(error:self.notConnectedError)
         }
         
-        apiService.unstar(repository: existingRepositoryName, owner: existingUserName, completion: { succeeded, error in
-            XCTAssertFalse(succeeded)
+        apiService.unstar(repository: existingRepositoryName, owner: existingUserName, completion: { error in
             XCTAssertNotNil(error)
             expectation.fulfill()
         })

@@ -41,29 +41,21 @@ extension ApiService {
         })
     }
     
-    func star(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
+    func star(repository: String, owner: String, completion: @escaping (Error?) -> ()) {
         guard let endpointUrl = starToggleEndpoint(repository: repository, username: owner) else { return }
         
         self.request(url: endpointUrl, method: .put, headers: headers, completion: { data, error in
             // Success in case Status: 204 No Content
-            if let error = error {
-                completion(false, error)
-            } else {
-                completion(true, nil)
-            }
+            completion(error)
         })
     }
     
-    func unstar(repository: String, owner: String, completion: @escaping (Bool, Error?) -> ()) {
+    func unstar(repository: String, owner: String, completion: @escaping (Error?) -> ()) {
         guard let endpointUrl = starToggleEndpoint(repository: repository, username: owner) else { return }
         
         self.request(url: endpointUrl, method: .delete, headers: headers, completion: { data, error in
             // Success in case Status: 204 No Content
-            if let error = error {
-                completion(false, error)
-            } else {
-                completion(true, nil)
-            }
+            completion(error)
         })
     }
     
@@ -72,13 +64,12 @@ extension ApiService {
         
         self.request(url: endpointUrl, method: .get, headers: headers, completion: { data, error  in
             let decoder = JSONDecoder()
-            if
+            guard
                 let data = data,
-                let repositories = try? decoder.decode([Repository].self, from: data) {
-                completion(repositories, nil)
-            } else {
-                completion(nil, error)
-            }
+                let repositories = try? decoder.decode([Repository].self, from: data)
+            else { return completion(nil, error) }
+            
+            completion(repositories, nil)
         })
     }
 }
