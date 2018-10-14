@@ -79,6 +79,6 @@ extension RepositoriesViewModel: ApiService, RepositoriesUpdater {
 fileprivate extension RepositoriesViewModel {
     func starStatus(for repositoryID: Int) -> Bool {
         guard let starredRepositories = starredRepositories else { return false }
-        return starredRepositories.repositories.contains{ $0.id == repositoryID }
+        return starredRepositories.repositoryIDs.contains{ $0 == repositoryID }
     }
 }
