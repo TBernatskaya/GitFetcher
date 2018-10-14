@@ -43,34 +43,34 @@ extension RepositoriesViewModel: ApiService, RepositoriesUpdater {
         })
     }
     
-    func star(repository: Repository) {
-        star(repository: repository.name, owner: repository.owner.login, completion: { [weak self] (success, error) in
+    func star(repository: Repository, completion: @escaping (Error?) -> ()) {
+        star(repository: repository.name, owner: repository.owner.login, completion: { [weak self] error in
             guard let weakSelf = self else { return }
-            
-            if success {
-                repository.isStarred = true
-                weakSelf.starredRepositories?.add(item: repository)
-                weakSelf.delegate?.didUpdateRepositories()
-            }
             
             if let error = error {
                 weakSelf.delegate?.didReceive(error: error)
+                completion(error)
+            } else {
+                repository.isStarred = true
+                weakSelf.starredRepositories?.add(item: repository)
+                weakSelf.delegate?.didUpdateRepositories()
+                completion(nil)
             }
         })
     }
     
-    func unstar(repository: Repository) {
-        unstar(repository: repository.name, owner: repository.owner.login, completion: { [weak self] (success, error) in
+    func unstar(repository: Repository, completion: @escaping (Error?) -> ()) {
+        unstar(repository: repository.name, owner: repository.owner.login, completion: { [weak self] error in
             guard let weakSelf = self else { return }
-            
-            if success {
-                repository.isStarred = false
-                weakSelf.starredRepositories?.remove(repositoryID: repository.id)
-                weakSelf.delegate?.didUpdateRepositories()
-            }
             
             if let error = error {
                 weakSelf.delegate?.didReceive(error: error)
+                completion(error)
+            } else {
+                repository.isStarred = false
+                weakSelf.starredRepositories?.remove(repositoryID: repository.id)
+                weakSelf.delegate?.didUpdateRepositories()
+                completion(nil)
             }
         })
     }

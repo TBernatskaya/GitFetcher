@@ -11,17 +11,14 @@ import Foundation
 class StarredRepositoriesCache: ApiService {
     var repositoryIDs: [Int] = []
     
-    func fetchStarredRepositories() {
+    func fetchStarredRepositories(completion: @escaping (Error?) -> ()) {
         starList(completion: { [weak self] (repositories, error) in
-            guard let weakSelf = self else { return }
+            guard
+                let weakSelf = self,
+                let repositories = repositories
+            else { return completion(error) }
             
-            if let repositories = repositories {
-                weakSelf.repositoryIDs = repositories.compactMap{ $0.id}
-            }
-            
-            if let error = error {
-                print(error.localizedDescription)
-            }
+            weakSelf.repositoryIDs = repositories.compactMap{ $0.id }
         })
     }
     

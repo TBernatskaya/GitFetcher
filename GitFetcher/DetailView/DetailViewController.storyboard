@@ -21,6 +21,12 @@
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="UIb-WU-pHI">
                                 <rect key="frame" x="16" y="120" width="343" height="130"/>
                                 <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAp-np-ksc">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sA-t9-ATO">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                         <constraints>
@@ -65,6 +71,7 @@
                     <navigationItem key="navigationItem" id="mYx-2l-xkb"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="TDg-As-0xQ" id="upF-6K-Xot"/>
+                        <outlet property="errorLabel" destination="DAp-np-ksc" id="EoL-p3-T0t"/>
                         <outlet property="forkLabel" destination="PeE-MQ-Qhj" id="9iW-SR-a7c"/>
                         <outlet property="starButton" destination="4sA-t9-ATO" id="SRQ-at-jku"/>
                         <outlet property="urlLabel" destination="jf2-qH-TIf" id="q2F-Wl-LbR"/>
