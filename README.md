@@ -10,6 +10,7 @@ This app fetches list of GitHub repositories by username (for ex. TBernatskaya).
  - unit tests
  
 **TODO:**
+ - move UI from storyboard
  - save private key to Keychain
  - improve detail view UI
  - process some "heavy" operations in dispatch queue
