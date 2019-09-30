@@ -10,7 +10,7 @@ import UIKit
 
 class SearchResultTableViewCell: UITableViewCell {
     
-    lazy var nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .boldSystemFont(ofSize: 14)
         return lbl
@@ -32,6 +32,7 @@ class SearchResultTableViewCell: UITableViewCell {
     let starStatusLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 13)
+        lbl.textColor = .blue
         return lbl
     }()
 
