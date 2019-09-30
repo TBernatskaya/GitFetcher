@@ -87,8 +87,7 @@ fileprivate extension MainViewController {
     
     func registerClasses() {
         let cellReuseIdentifier = "searchResultCell"
-        let cellNib = UINib.init(nibName: "SearchResultTableViewCell", bundle: Bundle.main)
-        searchResultsTableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
+        searchResultsTableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
     }
     
     func addObservers() {
