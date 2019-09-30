@@ -15,11 +15,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var searchResultsTableViewBottom: NSLayoutConstraint!
     
-    lazy var detailViewController: DetailViewController = {
-        let storyboard = UIStoryboard(name: "DetailViewController", bundle: nil)
-        let detailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        return detailViewController
-    }()
+    var detailViewController = DetailViewController()
     
     var repositoriesViewModel: RepositoriesViewModel? {
         didSet {

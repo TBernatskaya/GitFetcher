@@ -19,7 +19,6 @@
 		D4ED1B6A2173383900ECCBFD /* RepositoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED1B692173383900ECCBFD /* RepositoriesViewModelTests.swift */; };
 		D81CCDFB2152506B003A4315 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFA2152506B003A4315 /* ApiService.swift */; };
 		D81CCDFD2152605E003A4315 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CCDFC2152605E003A4315 /* Repository.swift */; };
-		D831FFBF216B9A73000DB1CD /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */; };
 		D831FFC1216B9A86000DB1CD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFC0216B9A86000DB1CD /* DetailViewController.swift */; };
 		D831FFD02171DBB1000DB1CD /* RepositoriesUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFCF2171DBB1000DB1CD /* RepositoriesUpdater.swift */; };
 		D831FFD22171F79C000DB1CD /* DetailViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831FFD12171F79C000DB1CD /* DetailViewStyle.swift */; };
@@ -72,7 +71,6 @@
 		D4ED1B692173383900ECCBFD /* RepositoriesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModelTests.swift; sourceTree = "<group>"; };
 		D81CCDFA2152506B003A4315 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		D81CCDFC2152605E003A4315 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		D831FFC0216B9A86000DB1CD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D831FFCF2171DBB1000DB1CD /* RepositoriesUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesUpdater.swift; sourceTree = "<group>"; };
 		D831FFD12171F79C000DB1CD /* DetailViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewStyle.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 		D831FFC2216B9A8E000DB1CD /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
-				D831FFBE216B9A73000DB1CD /* DetailViewController.storyboard */,
 				D831FFC0216B9A86000DB1CD /* DetailViewController.swift */,
 				D831FFCF2171DBB1000DB1CD /* RepositoriesUpdater.swift */,
 				D831FFD12171F79C000DB1CD /* DetailViewStyle.swift */,
@@ -371,7 +368,6 @@
 			files = (
 				D8C30768215229A1002FFE14 /* LaunchScreen.storyboard in Resources */,
 				D8C30765215229A1002FFE14 /* Assets.xcassets in Resources */,
-				D831FFBF216B9A73000DB1CD /* DetailViewController.storyboard in Resources */,
 				D8C307632152299F002FFE14 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
